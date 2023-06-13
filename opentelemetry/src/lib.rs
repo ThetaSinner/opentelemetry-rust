@@ -22,7 +22,7 @@
 //! fn main() {
 //!     // Create a new trace pipeline that prints to stdout
 //!     let provider = TracerProvider::builder()
-//!         .with_simple_exporter(opentelemetry_stdout::SpanExporter::default())
+//!         .with_simple_exporter(ts_opentelemetry_stdout::SpanExporter::default())
 //!         .build();
 //!     let tracer = provider.tracer("readme_example");
 //!
