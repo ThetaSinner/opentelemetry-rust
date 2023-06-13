@@ -30,7 +30,7 @@ ts_opentelemetry_stdout = { path = "../opentelemetry-stdout" }
 [features]
 default = ["trace"]
 trace = ["ts_opentelemetry_api/trace", "ts_opentelemetry_sdk/trace", "ts_opentelemetry_stdout/trace"]
-metrics = ["ts_opentelemetry_api/metrics", "ts_opentelemetry_sdk/metrics", "ts_opentelemetry_stdout/metrics"]
+metrics = ["ts_opentelemetry_api/metrics", "ts_opentelemetry_sdk/metrics"]
 logs = ["ts_opentelemetry_sdk/logs"]
 testing = ["ts_opentelemetry_api/testing", "ts_opentelemetry_sdk/testing"]
 rt-tokio = ["ts_opentelemetry_sdk/rt-tokio"]
