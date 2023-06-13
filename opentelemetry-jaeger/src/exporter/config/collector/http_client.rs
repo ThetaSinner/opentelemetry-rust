@@ -1,4 +1,4 @@
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry_http::HttpClient;
 use std::time::Duration;
 
 #[derive(Debug)]
@@ -59,7 +59,7 @@ impl CollectorHttpClient {
             }
             #[cfg(feature = "surf_collector_client")]
             CollectorHttpClient::Surf => {
-                use opentelemetry_http::surf::BasicAuthMiddleware;
+                use ts_opentelemetry_http::surf::BasicAuthMiddleware;
 
                 let client: surf::Client = surf::Config::new()
                     .set_timeout(Some(collector_timeout))
@@ -127,7 +127,7 @@ impl CollectorHttpClient {
             #[cfg(any(feature = "hyper_collector_client", feature = "hyper_tls_collector_client"))]
             CollectorHttpClient::Hyper => {
                 use headers::authorization::Credentials;
-                use opentelemetry_http::hyper::HyperClient;
+                use ts_opentelemetry_http::hyper::HyperClient;
                 use hyper::{Client, Body};
 
                 #[cfg(feature = "hyper_tls_collector_client")]
@@ -159,7 +159,7 @@ pub(crate) mod test_http_client {
     use async_trait::async_trait;
     use bytes::Bytes;
     use http::{Request, Response};
-    use opentelemetry_http::{HttpClient, HttpError};
+    use ts_opentelemetry_http::{HttpClient, HttpError};
     use std::fmt::Debug;
 
     pub(crate) struct TestHttpClient;
@@ -185,8 +185,8 @@ mod collector_client_tests {
     use crate::config::collector::http_client::test_http_client;
     use crate::exporter::thrift::jaeger::Batch;
     use crate::new_collector_pipeline;
-    use opentelemetry::runtime::Tokio;
-    use opentelemetry::trace::TraceError;
+    use ts_opentelemetry::runtime::Tokio;
+    use ts_opentelemetry::trace::TraceError;
 
     #[test]
     fn test_bring_your_own_client() -> Result<(), TraceError> {

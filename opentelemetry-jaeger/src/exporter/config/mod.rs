@@ -10,9 +10,9 @@
 //! [jaeger deployment guide]: https://www.jaegertracing.io/docs/1.31/deployment
 
 use crate::Process;
-use opentelemetry::trace::{TraceError, TracerProvider};
-use opentelemetry::{global, sdk, KeyValue};
-use opentelemetry_semantic_conventions as semcov;
+use ts_opentelemetry::trace::{TraceError, TracerProvider};
+use ts_opentelemetry::{global, sdk, KeyValue};
+use ts_opentelemetry_semantic_conventions as semcov;
 
 /// Config a exporter that sends the spans to a [jaeger agent](https://www.jaegertracing.io/docs/1.31/deployment/#agent).
 pub mod agent;
@@ -86,9 +86,9 @@ fn build_config_and_process(
 mod tests {
     use crate::exporter::config::build_config_and_process;
     use crate::new_agent_pipeline;
-    use opentelemetry::sdk::trace::Config;
-    use opentelemetry::sdk::Resource;
-    use opentelemetry::KeyValue;
+    use ts_opentelemetry::sdk::trace::Config;
+    use ts_opentelemetry::sdk::Resource;
+    use ts_opentelemetry::KeyValue;
     use std::env;
 
     #[test]

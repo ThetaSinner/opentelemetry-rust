@@ -20,8 +20,8 @@ pub trait TracerProvider {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::{global, trace::TracerProvider};
-    /// use opentelemetry_api::KeyValue;
+    /// use ts_opentelemetry_api::{global, trace::TracerProvider};
+    /// use ts_opentelemetry_api::KeyValue;
     ///
     /// let provider = global::tracer_provider();
     ///
@@ -54,7 +54,7 @@ pub trait TracerProvider {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::{global, trace::TracerProvider};
+    /// use ts_opentelemetry_api::{global, trace::TracerProvider};
     ///
     /// let provider = global::tracer_provider();
     ///

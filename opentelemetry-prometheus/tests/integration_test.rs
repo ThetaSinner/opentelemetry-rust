@@ -2,16 +2,16 @@ use std::fs;
 use std::path::Path;
 use std::time::Duration;
 
-use opentelemetry_api::metrics::{Meter, MeterProvider as _, Unit};
-use opentelemetry_api::KeyValue;
-use opentelemetry_api::{Context, Key};
+use ts_opentelemetry_api::metrics::{Meter, MeterProvider as _, Unit};
+use ts_opentelemetry_api::KeyValue;
+use ts_opentelemetry_api::{Context, Key};
 use opentelemetry_prometheus::ExporterBuilder;
-use opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, MeterProvider, Stream};
-use opentelemetry_sdk::resource::{
+use ts_opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, MeterProvider, Stream};
+use ts_opentelemetry_sdk::resource::{
     EnvResourceDetector, SdkProvidedResourceDetector, TelemetryResourceDetector,
 };
-use opentelemetry_sdk::Resource;
-use opentelemetry_semantic_conventions::resource::{SERVICE_NAME, TELEMETRY_SDK_VERSION};
+use ts_opentelemetry_sdk::Resource;
+use ts_opentelemetry_semantic_conventions::resource::{SERVICE_NAME, TELEMETRY_SDK_VERSION};
 use prometheus::{Encoder, TextEncoder};
 
 #[test]

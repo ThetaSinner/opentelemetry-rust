@@ -3,7 +3,7 @@
 #[cfg(feature = "collector_client")]
 use http::Uri;
 #[cfg(feature = "collector_client")]
-use opentelemetry_http::{HttpClient, ResponseExt as _};
+use ts_opentelemetry_http::{HttpClient, ResponseExt as _};
 
 #[cfg(feature = "collector_client")]
 pub(crate) use collector_client::AsyncHttpClient;
@@ -14,7 +14,7 @@ pub(crate) use wasm_collector_client::WasmCollector;
 mod collector_client {
     use super::*;
     use crate::exporter::thrift::jaeger;
-    use opentelemetry::sdk::export::trace::ExportResult;
+    use ts_opentelemetry::sdk::export::trace::ExportResult;
     use std::io::Cursor;
     use std::sync::atomic::{AtomicUsize, Ordering};
     use thrift::protocol::TBinaryOutputProtocol;

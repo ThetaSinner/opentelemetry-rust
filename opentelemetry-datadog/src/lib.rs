@@ -47,9 +47,9 @@
 //! ```
 //!
 //! ```no_run
-//! # fn main() -> Result<(), opentelemetry::trace::TraceError> {
+//! # fn main() -> Result<(), ts_opentelemetry::trace::TraceError> {
 //! let tracer = opentelemetry_datadog::new_pipeline()
-//!     .install_batch(opentelemetry::runtime::Tokio)?;
+//!     .install_batch(ts_opentelemetry::runtime::Tokio)?;
 //! # Ok(())
 //! # }
 //! ```
@@ -80,12 +80,12 @@
 //! [`DatadogPipelineBuilder`]: struct.DatadogPipelineBuilder.html
 //!
 //! ```no_run
-//! use opentelemetry::{KeyValue, trace::Tracer};
-//! use opentelemetry::sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
-//! use opentelemetry::sdk::export::trace::ExportResult;
-//! use opentelemetry::global::shutdown_tracer_provider;
+//! use ts_opentelemetry::{KeyValue, trace::Tracer};
+//! use ts_opentelemetry::sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
+//! use ts_opentelemetry::sdk::export::trace::ExportResult;
+//! use ts_opentelemetry::global::shutdown_tracer_provider;
 //! use opentelemetry_datadog::{new_pipeline, ApiVersion, Error};
-//! use opentelemetry_http::{HttpClient, HttpError};
+//! use ts_opentelemetry_http::{HttpClient, HttpError};
 //! use async_trait::async_trait;
 //! use bytes::Bytes;
 //! use futures_util::io::AsyncReadExt as _;
@@ -112,7 +112,7 @@
 //!     }
 //! }
 //!
-//! fn main() -> Result<(), opentelemetry::trace::TraceError> {
+//! fn main() -> Result<(), ts_opentelemetry::trace::TraceError> {
 //!     let tracer = new_pipeline()
 //!         .with_service_name("my_app")
 //!         .with_api_version(ApiVersion::Version05)
@@ -122,7 +122,7 @@
 //!                 .with_sampler(Sampler::AlwaysOn)
 //!                 .with_id_generator(RandomIdGenerator::default())
 //!         )
-//!         .install_batch(opentelemetry::runtime::Tokio)?;
+//!         .install_batch(ts_opentelemetry::runtime::Tokio)?;
 //!
 //!     tracer.in_span("doing_work", |cx| {
 //!         // Traced app logic here...
@@ -138,7 +138,7 @@ mod exporter;
 
 mod propagator {
     use once_cell::sync::Lazy;
-    use opentelemetry::{
+    use ts_opentelemetry::{
         propagation::{text_map_propagator::FieldIter, Extractor, Injector, TextMapPropagator},
         trace::{SpanContext, SpanId, TraceContextExt, TraceFlags, TraceId, TraceState},
         Context,
@@ -180,7 +180,7 @@ mod propagator {
     /// ## Example
     ///
     /// ```
-    /// use opentelemetry::global;
+    /// use ts_opentelemetry::global;
     /// use opentelemetry_datadog::DatadogPropagator;
     ///
     /// global::set_text_map_propagator(DatadogPropagator::default());
@@ -313,8 +313,8 @@ mod propagator {
     #[cfg(test)]
     mod tests {
         use super::*;
-        use opentelemetry::testing::trace::TestSpan;
-        use opentelemetry::trace::TraceState;
+        use ts_opentelemetry::testing::trace::TestSpan;
+        use ts_opentelemetry::trace::TraceState;
         use std::collections::HashMap;
 
         #[rustfmt::skip]

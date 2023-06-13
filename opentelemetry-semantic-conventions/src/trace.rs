@@ -14,7 +14,7 @@
 //! ## Usage
 //!
 //! ```
-//! use opentelemetry::{global, trace::Tracer as _};
+//! use ts_opentelemetry::{global, trace::Tracer as _};
 //! use opentelemetry_semantic_conventions as semcov;
 //!
 //! let tracer = global::tracer("my-component");
@@ -27,7 +27,7 @@
 //!     .start(&tracer);
 //! ```
 
-use opentelemetry::Key;
+use ts_opentelemetry::Key;
 
 /// The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
 ///

@@ -11,8 +11,8 @@ use serde::{Serialize, Serializer};
 #[derive(Debug, Serialize, Clone, Hash, Eq, PartialEq)]
 pub(crate) struct AttributeSet(pub BTreeMap<Key, Value>);
 
-impl From<&opentelemetry_sdk::AttributeSet> for AttributeSet {
-    fn from(value: &opentelemetry_sdk::AttributeSet) -> Self {
+impl From<&ts_opentelemetry_sdk::AttributeSet> for AttributeSet {
+    fn from(value: &ts_opentelemetry_sdk::AttributeSet) -> Self {
         AttributeSet(
             value
                 .iter()
@@ -22,8 +22,8 @@ impl From<&opentelemetry_sdk::AttributeSet> for AttributeSet {
     }
 }
 
-impl From<&opentelemetry_sdk::Resource> for AttributeSet {
-    fn from(value: &opentelemetry_sdk::Resource) -> Self {
+impl From<&ts_opentelemetry_sdk::Resource> for AttributeSet {
+    fn from(value: &ts_opentelemetry_sdk::Resource) -> Self {
         AttributeSet(
             value
                 .iter()
@@ -45,8 +45,8 @@ fn is_zero(v: &u64) -> bool {
     *v == 0
 }
 
-impl From<&opentelemetry_sdk::Resource> for Resource {
-    fn from(value: &opentelemetry_sdk::Resource) -> Self {
+impl From<&ts_opentelemetry_sdk::Resource> for Resource {
+    fn from(value: &ts_opentelemetry_sdk::Resource) -> Self {
         Resource {
             attributes: value
                 .iter()
@@ -69,8 +69,8 @@ impl From<Cow<'static, str>> for Key {
     }
 }
 
-impl From<opentelemetry_api::Key> for Key {
-    fn from(value: opentelemetry_api::Key) -> Self {
+impl From<ts_opentelemetry_api::Key> for Key {
+    fn from(value: ts_opentelemetry_api::Key) -> Self {
         Key(value.as_str().to_string().into())
     }
 }
@@ -122,24 +122,24 @@ impl Hash for Value {
     }
 }
 
-impl From<opentelemetry_api::Value> for Value {
-    fn from(value: opentelemetry_api::Value) -> Self {
+impl From<ts_opentelemetry_api::Value> for Value {
+    fn from(value: ts_opentelemetry_api::Value) -> Self {
         match value {
-            opentelemetry_api::Value::Bool(b) => Value::Bool(b),
-            opentelemetry_api::Value::I64(i) => Value::Int(i),
-            opentelemetry_api::Value::F64(f) => Value::Double(f),
-            opentelemetry_api::Value::String(s) => Value::String(s.into()),
-            opentelemetry_api::Value::Array(a) => match a {
-                opentelemetry_api::Array::Bool(b) => {
+            ts_opentelemetry_api::Value::Bool(b) => Value::Bool(b),
+            ts_opentelemetry_api::Value::I64(i) => Value::Int(i),
+            ts_opentelemetry_api::Value::F64(f) => Value::Double(f),
+            ts_opentelemetry_api::Value::String(s) => Value::String(s.into()),
+            ts_opentelemetry_api::Value::Array(a) => match a {
+                ts_opentelemetry_api::Array::Bool(b) => {
                     Value::Array(b.into_iter().map(Value::Bool).collect())
                 }
-                opentelemetry_api::Array::I64(i) => {
+                ts_opentelemetry_api::Array::I64(i) => {
                     Value::Array(i.into_iter().map(Value::Int).collect())
                 }
-                opentelemetry_api::Array::F64(f) => {
+                ts_opentelemetry_api::Array::F64(f) => {
                     Value::Array(f.into_iter().map(Value::Double).collect())
                 }
-                opentelemetry_api::Array::String(s) => {
+                ts_opentelemetry_api::Array::String(s) => {
                     Value::Array(s.into_iter().map(|s| Value::String(s.into())).collect())
                 }
             },
@@ -148,17 +148,17 @@ impl From<opentelemetry_api::Value> for Value {
 }
 
 #[cfg(feature = "logs")]
-impl From<opentelemetry_api::logs::AnyValue> for Value {
-    fn from(value: opentelemetry_api::logs::AnyValue) -> Self {
+impl From<ts_opentelemetry_api::logs::AnyValue> for Value {
+    fn from(value: ts_opentelemetry_api::logs::AnyValue) -> Self {
         match value {
-            opentelemetry_api::logs::AnyValue::Boolean(b) => Value::Bool(b),
-            opentelemetry_api::logs::AnyValue::Int(i) => Value::Int(i),
-            opentelemetry_api::logs::AnyValue::Double(d) => Value::Double(d),
-            opentelemetry_api::logs::AnyValue::String(s) => Value::String(s.into()),
-            opentelemetry_api::logs::AnyValue::ListAny(a) => {
+            ts_opentelemetry_api::logs::AnyValue::Boolean(b) => Value::Bool(b),
+            ts_opentelemetry_api::logs::AnyValue::Int(i) => Value::Int(i),
+            ts_opentelemetry_api::logs::AnyValue::Double(d) => Value::Double(d),
+            ts_opentelemetry_api::logs::AnyValue::String(s) => Value::String(s.into()),
+            ts_opentelemetry_api::logs::AnyValue::ListAny(a) => {
                 Value::Array(a.into_iter().map(Into::into).collect())
             }
-            opentelemetry_api::logs::AnyValue::Map(m) => Value::KeyValues(
+            ts_opentelemetry_api::logs::AnyValue::Map(m) => Value::KeyValues(
                 m.into_iter()
                     .map(|(key, value)| KeyValue {
                         key: key.into(),
@@ -166,7 +166,7 @@ impl From<opentelemetry_api::logs::AnyValue> for Value {
                     })
                     .collect(),
             ),
-            opentelemetry_api::logs::AnyValue::Bytes(b) => Value::BytesValue(b),
+            ts_opentelemetry_api::logs::AnyValue::Bytes(b) => Value::BytesValue(b),
         }
     }
 }
@@ -179,8 +179,8 @@ pub(crate) struct KeyValue {
 }
 
 #[cfg(feature = "logs")]
-impl From<(opentelemetry_api::Key, opentelemetry_api::logs::AnyValue)> for KeyValue {
-    fn from((key, value): (opentelemetry_api::Key, opentelemetry_api::logs::AnyValue)) -> Self {
+impl From<(ts_opentelemetry_api::Key, ts_opentelemetry_api::logs::AnyValue)> for KeyValue {
+    fn from((key, value): (ts_opentelemetry_api::Key, ts_opentelemetry_api::logs::AnyValue)) -> Self {
         KeyValue {
             key: key.into(),
             value: value.into(),
@@ -188,8 +188,8 @@ impl From<(opentelemetry_api::Key, opentelemetry_api::logs::AnyValue)> for KeyVa
     }
 }
 
-impl From<opentelemetry_api::KeyValue> for KeyValue {
-    fn from(value: opentelemetry_api::KeyValue) -> Self {
+impl From<ts_opentelemetry_api::KeyValue> for KeyValue {
+    fn from(value: ts_opentelemetry_api::KeyValue) -> Self {
         KeyValue {
             key: value.key.into(),
             value: value.value.into(),
@@ -197,8 +197,8 @@ impl From<opentelemetry_api::KeyValue> for KeyValue {
     }
 }
 
-impl From<&opentelemetry_api::KeyValue> for KeyValue {
-    fn from(value: &opentelemetry_api::KeyValue) -> Self {
+impl From<&ts_opentelemetry_api::KeyValue> for KeyValue {
+    fn from(value: &ts_opentelemetry_api::KeyValue) -> Self {
         KeyValue {
             key: value.key.clone().into(),
             value: value.value.clone().into(),
@@ -206,8 +206,8 @@ impl From<&opentelemetry_api::KeyValue> for KeyValue {
     }
 }
 
-impl From<(opentelemetry_api::Key, opentelemetry_api::Value)> for KeyValue {
-    fn from((key, value): (opentelemetry_api::Key, opentelemetry_api::Value)) -> Self {
+impl From<(ts_opentelemetry_api::Key, ts_opentelemetry_api::Value)> for KeyValue {
+    fn from((key, value): (ts_opentelemetry_api::Key, ts_opentelemetry_api::Value)) -> Self {
         KeyValue {
             key: key.into(),
             value: value.into(),
@@ -228,8 +228,8 @@ pub(crate) struct Scope {
     dropped_attributes_count: u64,
 }
 
-impl From<opentelemetry_sdk::Scope> for Scope {
-    fn from(value: opentelemetry_sdk::Scope) -> Self {
+impl From<ts_opentelemetry_sdk::Scope> for Scope {
+    fn from(value: ts_opentelemetry_sdk::Scope) -> Self {
         Scope {
             name: value.name,
             version: value.version,

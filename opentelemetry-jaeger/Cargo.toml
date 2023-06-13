@@ -32,9 +32,9 @@ hyper = { version = "0.14", default-features = false, features = ["client"], opt
 hyper-tls = { version = "0.5.0", default-features = false, optional = true }
 isahc = { version = "1.4", default-features = false, optional = true }
 js-sys = { version = "0.3", optional = true }
-ts_opentelemetry = { version = "0.20", default-features = false, features = ["trace"], path = "../opentelemetry" }
-ts_opentelemetry_http = { version = "0.9", path = "../opentelemetry_http", optional = true }
-ts_opentelemetry_semantic_conventions = { version = "0.12", path = "../opentelemetry-semantic-conventions" }
+ts_opentelemetry = { version = "0.20.0-beta.1", default-features = false, features = ["trace"], path = "../opentelemetry" }
+ts_opentelemetry_http = { version = "0.9.0-beta.1", path = "../opentelemetry-http", optional = true }
+ts_opentelemetry_semantic_conventions = { version = "0.12.0-beta.1", path = "../opentelemetry-semantic-conventions" }
 pin-project-lite = { version = "0.2", optional = true }
 reqwest = { version = "0.11", default-features = false, optional = true }
 surf = { version = "2.0", optional = true }
@@ -51,7 +51,7 @@ prost-types = { version = "0.11.6", optional = true }
 tokio = { version = "1.0", features = ["net", "sync"] }
 bytes = "1"
 futures-executor = "0.3"
-opentelemetry = { default-features = false, features = ["trace", "testing"], path = "../opentelemetry" }
+ts_opentelemetry = { default-features = false, features = ["trace", "testing"], path = "../opentelemetry" }
 
 [dependencies.web-sys]
 version = "0.3.4"
@@ -83,14 +83,14 @@ full = [
     "integration_test"
 ]
 default = []
-collector_client = ["http", "opentelemetry-http"]
-hyper_collector_client = ["collector_client", "headers", "http", "hyper", "opentelemetry-http/tokio", "opentelemetry-http/hyper"]
+collector_client = ["http", "ts_opentelemetry_http"]
+hyper_collector_client = ["collector_client", "headers", "http", "hyper", "ts_opentelemetry_http/tokio", "ts_opentelemetry_http/hyper"]
 hyper_tls_collector_client = ["hyper_collector_client", "hyper-tls"]
-isahc_collector_client = ["isahc", "opentelemetry-http/isahc"]
-reqwest_blocking_collector_client = ["reqwest/blocking", "collector_client", "headers", "opentelemetry-http/reqwest"]
-reqwest_collector_client = ["reqwest", "collector_client", "headers", "opentelemetry-http/reqwest"]
-reqwest_rustls_collector_client = ["reqwest", "reqwest/rustls-tls-native-roots", "collector_client", "headers", "opentelemetry-http/reqwest"]
-surf_collector_client = ["surf", "collector_client", "opentelemetry-http/surf"]
+isahc_collector_client = ["isahc", "ts_opentelemetry_http/isahc"]
+reqwest_blocking_collector_client = ["reqwest/blocking", "collector_client", "headers", "ts_opentelemetry_http/reqwest"]
+reqwest_collector_client = ["reqwest", "collector_client", "headers", "ts_opentelemetry_http/reqwest"]
+reqwest_rustls_collector_client = ["reqwest", "reqwest/rustls-tls-native-roots", "collector_client", "headers", "ts_opentelemetry_http/reqwest"]
+surf_collector_client = ["surf", "collector_client", "ts_opentelemetry_http/surf"]
 wasm_collector_client = [
     "base64",
     "futures-util",
@@ -101,7 +101,7 @@ wasm_collector_client = [
     "wasm-bindgen-futures",
     "web-sys",
 ]
-rt-tokio = ["tokio", "opentelemetry/rt-tokio"]
-rt-tokio-current-thread = ["tokio", "opentelemetry/rt-tokio-current-thread"]
-rt-async-std = ["async-std", "opentelemetry/rt-async-std"]
+rt-tokio = ["tokio", "ts_opentelemetry/rt-tokio"]
+rt-tokio-current-thread = ["tokio", "ts_opentelemetry/rt-tokio-current-thread"]
+rt-async-std = ["async-std", "ts_opentelemetry/rt-async-std"]
 integration_test = ["tonic", "prost", "prost-types", "rt-tokio", "collector_client", "hyper_collector_client", "hyper_tls_collector_client", "reqwest_collector_client", "surf_collector_client", "isahc_collector_client"]

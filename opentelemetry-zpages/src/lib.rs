@@ -16,7 +16,7 @@
 //!
 //! ```no_run
 //! # use opentelemetry_zpages::tracez;
-//! # use opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
+//! # use ts_opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
 //! # use std::sync::Arc;
 //!
 //! # fn main() {
@@ -37,7 +37,7 @@
 //!
 //!
 //! [`ZPagesSpanProcessor`]: trace::span_processor::ZPagesSpanProcessor
-//! [`TracerProvider`]: opentelemetry::trace::TracerProvider
+//! [`TracerProvider`]: ts_opentelemetry::trace::TracerProvider
 //! [here]: https://github.com/open-telemetry/opentelemetry-rust/tree/main/examples/zpages
 #![warn(
     future_incompatible,

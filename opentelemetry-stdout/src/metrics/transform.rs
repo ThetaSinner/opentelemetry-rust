@@ -1,5 +1,5 @@
-use opentelemetry_api::{global, metrics::MetricsError};
-use opentelemetry_sdk::metrics::data;
+use ts_opentelemetry_api::{global, metrics::MetricsError};
+use ts_opentelemetry_sdk::metrics::data;
 use serde::{Serialize, Serializer};
 use std::{
     any::Any,
@@ -72,8 +72,8 @@ impl Unit {
     }
 }
 
-impl From<opentelemetry_api::metrics::Unit> for Unit {
-    fn from(unit: opentelemetry_api::metrics::Unit) -> Self {
+impl From<ts_opentelemetry_api::metrics::Unit> for Unit {
+    fn from(unit: ts_opentelemetry_api::metrics::Unit) -> Self {
         Unit(unit.as_str().to_string().into())
     }
 }

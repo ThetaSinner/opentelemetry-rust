@@ -27,16 +27,16 @@ required-features = ["metrics", "rt-tokio"]
 [features]
 default = ["metrics", "rt-tokio", "reqwest-client", "reqwest-rustls"]
 
-metrics = ["opentelemetry/metrics"]
+metrics = ["ts_opentelemetry/metrics"]
 
-reqwest-client = ["reqwest", "opentelemetry-http/reqwest"]
+reqwest-client = ["reqwest", "ts_opentelemetry_http/reqwest"]
 reqwest-rustls = ["reqwest/rustls-tls-native-roots"]
-reqwest-blocking-client = ["reqwest/blocking", "opentelemetry-http/reqwest"]
-surf-client = ["surf", "opentelemetry-http/surf"]
-isahc-client = ["isahc", "opentelemetry-http/isahc"]
+reqwest-blocking-client = ["reqwest/blocking", "ts_opentelemetry_http/reqwest"]
+surf-client = ["surf", "ts_opentelemetry_http/surf"]
+isahc-client = ["isahc", "ts_opentelemetry_http/isahc"]
 
-rt-tokio = ["tokio", "opentelemetry/rt-tokio"]
-rt-async-std = ["async-std", "opentelemetry/rt-async-std"]
+rt-tokio = ["tokio", "ts_opentelemetry/rt-tokio"]
+rt-async-std = ["async-std", "ts_opentelemetry/rt-async-std"]
 
 wasm = [
     "base64",
@@ -57,8 +57,8 @@ getrandom = { version = "0.2", optional = true }
 http = "0.2"
 isahc = { version = "1.4", default-features = false, optional = true }
 js-sys = { version = "0.3.5", optional = true }
-opentelemetry = { version = "0.19", default-features = false }
-opentelemetry-http = { version = "0.8", default-features = false }
+ts_opentelemetry = { version = "0.20.0-beta.1", path = "../opentelemetry", default-features = false }
+ts_opentelemetry_http = { version = "0.9.0-beta.1", path = "../opentelemetry-http", default-features = false }
 reqwest = { version = "0.11", default-features = false, optional = true }
 surf = { version = "2.0", default-features = false, optional = true }
 thiserror = "1.0"
@@ -80,6 +80,6 @@ features = [
 optional = true
 
 [dev-dependencies]
-opentelemetry = { version = "0.19.0", features = ["rt-tokio"] }
+ts_opentelemetry = { version = "0.20.0-beta.1", path = "../opentelemetry", features = ["rt-tokio"] }
 tokio = { version = "1.0", default-features = false, features = ["macros", "rt-multi-thread", "sync", "test-util"] }
 hyper = { version = "0.14", default-features = false, features = ["server", "tcp", "http1"] }

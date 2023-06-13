@@ -2,11 +2,11 @@ use rand::Rng;
 use std::sync::{Arc, Weak};
 
 use criterion::{criterion_group, criterion_main, Bencher, Criterion};
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::{Counter, Histogram, MeterProvider as _, Result},
     Context, Key, KeyValue,
 };
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     metrics::{
         data::{ResourceMetrics, Temporality},
         new_view,

@@ -1,7 +1,7 @@
 //! # Span Queue
 
-use opentelemetry::sdk::export::trace::SpanData;
-use opentelemetry::trace::SpanContext;
+use ts_opentelemetry::sdk::export::trace::SpanData;
+use ts_opentelemetry::trace::SpanContext;
 #[cfg(feature = "serialize")]
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -10,7 +10,7 @@ use std::collections::HashMap;
 /// removed from the queue in a first in first out fashion.
 #[derive(Clone, Debug)]
 pub(crate) struct SpanQueue {
-    // We can't really use the opentelemetry::EvictedQueue here because
+    // We can't really use the ts_opentelemetry::EvictedQueue here because
     // we need to compare the SpanData based on their span context
     // rather than all fields. Thus, we cannot use SpanData's default
     // equal function as it compares all fields.
@@ -106,8 +106,8 @@ impl SpanQueue {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use opentelemetry::testing::trace::new_test_export_span_data;
-    use opentelemetry::trace::{SpanId, TraceFlags, TraceId, TraceState};
+    use ts_opentelemetry::testing::trace::new_test_export_span_data;
+    use ts_opentelemetry::trace::{SpanId, TraceFlags, TraceId, TraceState};
     use std::time::SystemTime;
 
     enum Action {

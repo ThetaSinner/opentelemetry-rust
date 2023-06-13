@@ -7,7 +7,7 @@ use futures_util::{
     future::{self, Either},
     {pin_mut, stream, StreamExt as _},
 };
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     logs::{LogError, LogResult},
 };

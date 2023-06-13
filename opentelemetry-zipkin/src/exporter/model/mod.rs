@@ -1,4 +1,4 @@
-use opentelemetry::{
+use ts_opentelemetry::{
     sdk::export::trace,
     trace::{SpanKind, Status},
     Key, KeyValue,

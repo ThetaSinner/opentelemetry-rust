@@ -3,10 +3,10 @@ pub(crate) mod tonic {
     use std::any::Any;
     use std::fmt;
 
-    use opentelemetry_api::{global, metrics::MetricsError};
-    use opentelemetry_proto::tonic::common::v1::InstrumentationScope as TonicInstrumentationScope;
-    use opentelemetry_proto::tonic::resource::v1::Resource as TonicResource;
-    use opentelemetry_proto::tonic::{
+    use ts_opentelemetry_api::{global, metrics::MetricsError};
+    use ts_opentelemetry_proto::tonic::common::v1::InstrumentationScope as TonicInstrumentationScope;
+    use ts_opentelemetry_proto::tonic::resource::v1::Resource as TonicResource;
+    use ts_opentelemetry_proto::tonic::{
         collector::metrics::v1::ExportMetricsServiceRequest,
         metrics::v1::{
             exemplar::Value as TonicExemplarValue, metric::Data as TonicMetricData,
@@ -18,11 +18,11 @@ pub(crate) mod tonic {
             ScopeMetrics as TonicScopeMetrics, Sum as TonicSum,
         },
     };
-    use opentelemetry_sdk::metrics::data::{
+    use ts_opentelemetry_sdk::metrics::data::{
         self, Exemplar as SdkExemplar, Gauge as SdkGauge, Histogram as SdkHistogram,
         Metric as SdkMetric, ScopeMetrics as SdkScopeMetrics, Sum as SdkSum,
     };
-    use opentelemetry_sdk::Resource as SdkResource;
+    use ts_opentelemetry_sdk::Resource as SdkResource;
 
     use crate::to_nanos;
 

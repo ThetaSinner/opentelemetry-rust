@@ -1,10 +1,10 @@
 [package]
-name = "opentelemetry-proto"
-version = "0.2.0"
+name = "ts_opentelemetry_proto"
+version = "0.3.0-beta.1"
 authors = ["OpenTelemetry Authors <cncf-opentelemetry-contributors@lists.cncf.io>"]
-description = "Protobuf generated files and transmationes"
-homepage = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-proto"
-repository = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-proto"
+description = "A fork of the protobuf generated files and transmationes"
+homepage = "https://github.com/ThetaSinner/opentelemetry-rust"
+repository = "https://github.com/ThetaSinner/opentelemetry-rust"
 readme = "README.md"
 categories = [
     "development-tools::debugging",
@@ -48,8 +48,8 @@ grpcio = { version = "0.12", optional = true }
 tonic = { version = "0.9.0", default-features = false, optional = true, features = ["codegen", "prost"] }
 prost = { version = "0.11.0", optional = true }
 protobuf = { version = "2.18", optional = true } # todo: update to 3.0 so we have docs for generated types.
-opentelemetry_api = { version = "0.19", default-features = false, features = ["trace", "metrics", "logs"], path = "../opentelemetry-api" }
-opentelemetry_sdk = { version = "0.19", default-features = false, features = ["trace", "metrics", "logs"], path = "../opentelemetry-sdk" }
+ts_opentelemetry_api = { version = "0.20.0-beta.1", default-features = false, features = ["trace", "metrics", "logs"], path = "../opentelemetry-api" }
+ts_opentelemetry_sdk = { version = "0.20.0-beta.1", default-features = false, features = ["trace", "metrics", "logs"], path = "../opentelemetry-sdk" }
 futures = { version = "0.3", default-features = false, features = ["std"] }
 serde = { version = "1.0", optional = true }
 

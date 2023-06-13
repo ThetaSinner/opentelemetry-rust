@@ -13,7 +13,7 @@
 //! ```no_run
 //! # #[cfg(feature = "trace")]
 //! # {
-//! use opentelemetry::{
+//! use ts_opentelemetry::{
 //!     global,
 //!     sdk::trace::TracerProvider,
 //!     trace::{Tracer, TracerProvider as _},
@@ -53,7 +53,7 @@
 //! ```
 //! # #[cfg(feature = "trace")]
 //! # {
-//! use opentelemetry::{global, trace::{Span, Tracer}, KeyValue};
+//! use ts_opentelemetry::{global, trace::{Span, Tracer}, KeyValue};
 //!
 //! // get a tracer from a provider
 //! let tracer = global::tracer("my_service");
@@ -89,7 +89,7 @@
 //! ```
 //! # #[cfg(feature = "metrics")]
 //! # {
-//! use opentelemetry::{global, Context, KeyValue};
+//! use ts_opentelemetry::{global, Context, KeyValue};
 //!
 //! let cx = Context::current();
 //!
@@ -229,13 +229,13 @@
 )]
 #![cfg_attr(test, deny(warnings))]
 
-pub use opentelemetry_api::*;
-pub use opentelemetry_sdk::runtime;
+pub use ts_opentelemetry_api::*;
+pub use ts_opentelemetry_sdk::runtime;
 
 #[doc(hidden)]
 #[cfg(feature = "testing")]
 pub mod testing {
-    pub use opentelemetry_sdk::testing::*;
+    pub use ts_opentelemetry_sdk::testing::*;
 }
 
 /// # OpenTelemetry SDK
@@ -247,5 +247,5 @@ pub mod testing {
 /// through `Exporter`s. These can be configured on `Tracer` and
 /// `Meter` creation.
 pub mod sdk {
-    pub use opentelemetry_sdk::*;
+    pub use ts_opentelemetry_sdk::*;
 }

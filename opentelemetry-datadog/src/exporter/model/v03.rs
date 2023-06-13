@@ -1,9 +1,9 @@
 use crate::exporter::model::{Error, SAMPLING_PRIORITY_KEY};
 use crate::exporter::ModelConfig;
-use opentelemetry::sdk::export::trace;
-use opentelemetry::sdk::export::trace::SpanData;
-use opentelemetry::trace::Status;
-use opentelemetry::{Key, Value};
+use ts_opentelemetry::sdk::export::trace;
+use ts_opentelemetry::sdk::export::trace::SpanData;
+use ts_opentelemetry::trace::Status;
+use ts_opentelemetry::{Key, Value};
 use std::time::SystemTime;
 
 pub(crate) fn encode<S, N, R>(

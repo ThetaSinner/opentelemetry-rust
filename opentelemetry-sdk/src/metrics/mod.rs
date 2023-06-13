@@ -9,11 +9,11 @@
 //! ### Example
 //!
 //! ```
-//! use opentelemetry_api::{
+//! use ts_opentelemetry_api::{
 //!     metrics::{MeterProvider as _, Unit},
 //!     Context, KeyValue,
 //! };
-//! use opentelemetry_sdk::{metrics::MeterProvider, Resource};
+//! use ts_opentelemetry_sdk::{metrics::MeterProvider, Resource};
 //!
 //! let cx = Context::current();
 //!

@@ -1,6 +1,6 @@
 use futures::StreamExt;
-use opentelemetry_api::global::shutdown_tracer_provider;
-use opentelemetry_api::trace::{Span, SpanKind, Tracer};
+use ts_opentelemetry_api::global::shutdown_tracer_provider;
+use ts_opentelemetry_api::trace::{Span, SpanKind, Tracer};
 use opentelemetry_otlp::WithExportConfig;
 use opentelemetry_proto::tonic::collector::trace::v1::{
     trace_service_server::{TraceService, TraceServiceServer},
@@ -85,7 +85,7 @@ async fn smoke_tracer() {
                     .with_endpoint(format!("http://{}", addr))
                     .with_metadata(metadata),
             )
-            .install_batch(opentelemetry_sdk::runtime::Tokio)
+            .install_batch(ts_opentelemetry_sdk::runtime::Tokio)
             .expect("failed to install");
 
         println!("Sending span...");

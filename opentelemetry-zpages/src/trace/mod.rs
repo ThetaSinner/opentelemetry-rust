@@ -1,11 +1,11 @@
 //! Tracez implementation
 //!
-use opentelemetry_proto::grpcio::tracez::{ErrorData, LatencyData, RunningData, TracezCounts};
+use ts_opentelemetry_proto::grpcio::tracez::{ErrorData, LatencyData, RunningData, TracezCounts};
 
 use async_channel::{SendError, Sender};
 use futures_channel::oneshot::{self, Canceled};
-use opentelemetry::runtime::Runtime;
-use opentelemetry::sdk::export::trace::SpanData;
+use ts_opentelemetry::runtime::Runtime;
+use ts_opentelemetry::sdk::export::trace::SpanData;
 use serde::ser::SerializeSeq;
 use serde::Serializer;
 use std::fmt::Formatter;
@@ -22,12 +22,12 @@ pub(crate) mod span_queue;
 /// The `sample_size` config how may spans to sample for each unique span name.
 ///
 /// [`ZPagesSpanProcessor`]: span_processor::ZPagesSpanProcessor
-/// [`TracerProvider`]: opentelemetry::trace::TracerProvider
+/// [`TracerProvider`]: ts_opentelemetry::trace::TracerProvider
 ///
 /// ## Example
 /// ```no_run
 /// # use opentelemetry_zpages::tracez;
-/// # use opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
+/// # use ts_opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
 /// # use std::sync::Arc;
 /// # fn main() {
 ///     let (processor, querier) = tracez(5, Tokio); // sample 5 spans for each unique span name

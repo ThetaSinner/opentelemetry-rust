@@ -8,7 +8,7 @@
 //! ## Usage
 //!
 //! ```
-//! use opentelemetry::{global, trace::Tracer as _};
+//! use ts_opentelemetry::{global, trace::Tracer as _};
 //! use opentelemetry_semantic_conventions as semcov;
 //!
 //! let tracer = global::tracer("my-component");

@@ -7,7 +7,7 @@
 //! OTLP_GRPCIO_X_HONEYCOMB_DATASET=dataset \
 //! cargo run --bin external-otlp-grpcio-async-std
 //! ```
-use opentelemetry::{
+use ts_opentelemetry::{
     global::{shutdown_tracer_provider, tracer},
     sdk::trace as sdktrace,
     trace::TraceError,
@@ -65,7 +65,7 @@ fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
                 .with_headers(headers)
                 .with_tls(true),
         )
-        .install_batch(opentelemetry::runtime::AsyncStd)
+        .install_batch(ts_opentelemetry::runtime::AsyncStd)
 }
 
 const LEMONS_KEY: Key = Key::from_static_str("ex.com/lemons");

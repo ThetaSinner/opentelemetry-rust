@@ -5,8 +5,8 @@ use crate::exporter::config::{
 use crate::exporter::uploader::{AsyncUploader, Uploader};
 use crate::{Exporter, JaegerTraceRuntime};
 use http::Uri;
-use opentelemetry::sdk::trace::BatchConfig;
-use opentelemetry::{sdk, sdk::trace::Config as TraceConfig, trace::TraceError};
+use ts_opentelemetry::sdk::trace::BatchConfig;
+use ts_opentelemetry::{sdk, sdk::trace::Config as TraceConfig, trace::TraceError};
 use std::borrow::BorrowMut;
 use std::convert::TryFrom;
 use std::env;
@@ -15,7 +15,7 @@ use std::sync::Arc;
 use std::time::Duration;
 
 #[cfg(feature = "collector_client")]
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry_http::HttpClient;
 
 #[cfg(feature = "collector_client")]
 use crate::config::collector::http_client::CollectorHttpClient;
@@ -75,12 +75,12 @@ const ENV_PASSWORD: &str = "OTEL_EXPORTER_JAEGER_PASSWORD";
 /// Note that the functions to setup build in http clients override each other. That means if you have a pipeline with the following setup
 ///
 /// ```no_run
-/// # use opentelemetry::trace::TraceError;
+/// # use ts_opentelemetry::trace::TraceError;
 /// # #[cfg(all(feature="reqwest_collector_client", feature="surf_collector_client"))]
 /// let tracer = opentelemetry_jaeger::new_collector_pipeline()
 ///         .with_surf()
 ///         .with_reqwest()
-///         .install_batch(opentelemetry::runtime::Tokio)
+///         .install_batch(ts_opentelemetry::runtime::Tokio)
 /// #       .unwrap();
 /// ```
 ///
@@ -391,7 +391,7 @@ impl CollectorPipeline {
     /// # Examples
     /// Set service name via resource.
     /// ```rust
-    /// use opentelemetry::{sdk::{self, Resource}, KeyValue};
+    /// use ts_opentelemetry::{sdk::{self, Resource}, KeyValue};
     ///
     /// let pipeline = opentelemetry_jaeger::new_collector_pipeline()
     ///                 .with_trace_config(
@@ -410,7 +410,7 @@ impl CollectorPipeline {
     /// # Examples
     /// Set max queue size.
     /// ```rust
-    /// use opentelemetry::sdk::trace::BatchConfig;
+    /// use ts_opentelemetry::sdk::trace::BatchConfig;
     ///
     /// let pipeline = opentelemetry_jaeger::new_collector_pipeline()
     ///                 .with_batch_processor_config(
@@ -434,7 +434,7 @@ impl CollectorPipeline {
     /// Commonly used runtime are provided via `rt-tokio`, `rt-tokio-current-thread`, `rt-async-std`
     /// features.
     ///
-    /// [`shut_down_tracer_provider`]: opentelemetry::global::shutdown_tracer_provider
+    /// [`shut_down_tracer_provider`]: ts_opentelemetry::global::shutdown_tracer_provider
     // todo: we don't need JaegerTraceRuntime, we only need otel runtime
     pub fn build_batch<R: JaegerTraceRuntime>(
         mut self,
@@ -531,7 +531,7 @@ impl CollectorPipeline {
 mod tests {
     use super::*;
     use crate::config::collector::http_client::test_http_client;
-    use opentelemetry::runtime::Tokio;
+    use ts_opentelemetry::runtime::Tokio;
 
     #[test]
     fn test_collector_defaults() {

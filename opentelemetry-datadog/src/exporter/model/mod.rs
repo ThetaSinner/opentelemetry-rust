@@ -1,6 +1,6 @@
 use crate::exporter::ModelConfig;
 use http::uri;
-use opentelemetry::sdk::export::{
+use ts_opentelemetry::sdk::export::{
     trace::{self, SpanData},
     ExportError,
 };
@@ -39,7 +39,7 @@ static SAMPLING_PRIORITY_KEY: &str = "_sampling_priority_v1";
 /// For example,
 /// ```no_run
 /// use opentelemetry_datadog::{ApiVersion, new_pipeline};
-/// fn main() -> Result<(), opentelemetry::trace::TraceError> {
+/// fn main() -> Result<(), ts_opentelemetry::trace::TraceError> {
 ///    let tracer = new_pipeline()
 ///            .with_service_name("my_app")
 ///            .with_api_version(ApiVersion::Version05)
@@ -48,7 +48,7 @@ static SAMPLING_PRIORITY_KEY: &str = "_sampling_priority_v1";
 ///                 "datadog spans"
 ///             })
 ///            .with_agent_endpoint("http://localhost:8126")
-///            .install_batch(opentelemetry::runtime::Tokio)?;
+///            .install_batch(ts_opentelemetry::runtime::Tokio)?;
 ///
 ///    Ok(())
 /// }
@@ -189,9 +189,9 @@ impl ApiVersion {
 #[cfg(test)]
 pub(crate) mod tests {
     use super::*;
-    use opentelemetry::sdk::InstrumentationLibrary;
-    use opentelemetry::sdk::{self, Resource};
-    use opentelemetry::{
+    use ts_opentelemetry::sdk::InstrumentationLibrary;
+    use ts_opentelemetry::sdk::{self, Resource};
+    use ts_opentelemetry::{
         trace::{SpanContext, SpanId, SpanKind, Status, TraceFlags, TraceId, TraceState},
         Key, KeyValue,
     };

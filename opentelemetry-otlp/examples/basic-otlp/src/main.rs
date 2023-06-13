@@ -1,14 +1,14 @@
 use once_cell::sync::Lazy;
-use opentelemetry_api::global;
-use opentelemetry_api::global::shutdown_tracer_provider;
-use opentelemetry_api::trace::TraceError;
-use opentelemetry_api::{
+use ts_opentelemetry_api::global;
+use ts_opentelemetry_api::global::shutdown_tracer_provider;
+use ts_opentelemetry_api::trace::TraceError;
+use ts_opentelemetry_api::{
     metrics,
     trace::{TraceContextExt, Tracer},
     Context, Key, KeyValue,
 };
 use opentelemetry_otlp::{ExportConfig, WithExportConfig};
-use opentelemetry_sdk::{metrics::MeterProvider, runtime, trace as sdktrace, Resource};
+use ts_opentelemetry_sdk::{metrics::MeterProvider, runtime, trace as sdktrace, Resource};
 use std::error::Error;
 
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
@@ -21,7 +21,7 @@ fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
         )
         .with_trace_config(
             sdktrace::config().with_resource(Resource::new(vec![KeyValue::new(
-                opentelemetry_semantic_conventions::resource::SERVICE_NAME,
+                ts_opentelemetry_semantic_conventions::resource::SERVICE_NAME,
                 "trace-demo",
             )])),
         )

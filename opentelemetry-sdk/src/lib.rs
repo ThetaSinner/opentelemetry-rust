@@ -7,12 +7,12 @@
 //! ```no_run
 //! # #[cfg(feature = "trace")]
 //! # {
-//! use opentelemetry_api::{global, trace::{Tracer, TracerProvider as _}};
-//! use opentelemetry_sdk::trace::TracerProvider;
+//! use ts_opentelemetry_api::{global, trace::{Tracer, TracerProvider as _}};
+//! use ts_opentelemetry_sdk::trace::TracerProvider;
 //!
 //! fn main() {
 //!     // Choose an exporter like `opentelemetry_stdout::SpanExporter`
-//!     # fn example<T: opentelemetry_sdk::export::trace::SpanExporter + 'static>(new_exporter: impl Fn() -> T) {
+//!     # fn example<T: ts_opentelemetry_sdk::export::trace::SpanExporter + 'static>(new_exporter: impl Fn() -> T) {
 //!     let exporter = new_exporter();
 //!
 //!     // Create a new trace pipeline that prints to stdout
@@ -38,7 +38,7 @@
 //! spans.
 //!
 //! [examples]: https://github.com/open-telemetry/opentelemetry-rust/tree/main/examples
-//! [`trace`]: https://docs.rs/opentelemetry_api/latest/opentelemetry_api/trace/index.html
+//! [`trace`]: https://docs.rs/ts_opentelemetry_api/latest/ts_opentelemetry_api/trace/index.html
 //!
 //! # Metrics (Beta)
 //!
@@ -50,7 +50,7 @@
 //! ```
 //! # #[cfg(feature = "metrics")]
 //! # {
-//! use opentelemetry_api::{global, Context, KeyValue};
+//! use ts_opentelemetry_api::{global, Context, KeyValue};
 //!
 //! let cx = Context::current();
 //!
@@ -71,7 +71,7 @@
 //! managing instruments.
 //!
 //! [examples]: https://github.com/open-telemetry/opentelemetry-rust/tree/main/examples
-//! [`metrics`]: https://docs.rs/opentelemetry_api/latest/opentelemetry_api/metrics/index.html
+//! [`metrics`]: https://docs.rs/ts_opentelemetry_api/latest/ts_opentelemetry_api/metrics/index.html
 //!
 //! ## Crate Feature Flags
 //!

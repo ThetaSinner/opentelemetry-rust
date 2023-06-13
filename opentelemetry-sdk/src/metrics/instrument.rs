@@ -1,6 +1,6 @@
 use std::{any::Any, borrow::Cow, fmt, hash::Hash, marker, sync::Arc};
 
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::{
         AsyncInstrument, MetricsError, Result, SyncCounter, SyncHistogram, SyncUpDownCounter, Unit,
     },
@@ -46,7 +46,7 @@ pub enum InstrumentKind {
 /// Instruments can be used as criteria for views.
 ///
 /// ```
-/// use opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
+/// use ts_opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
 ///
 /// let criteria = Instrument::new().name("counter_*");
 /// let mask = Stream::new().aggregation(Aggregation::Sum);
@@ -150,7 +150,7 @@ impl Instrument {
 /// Streams can be used as masks in views.
 ///
 /// ```
-/// use opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
+/// use ts_opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
 ///
 /// let criteria = Instrument::new().name("counter_*");
 /// let mask = Stream::new().aggregation(Aggregation::Sum);

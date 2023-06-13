@@ -1,4 +1,4 @@
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     metrics::{MetricsError, Result},
 };
@@ -35,7 +35,7 @@ fn empty_view(_inst: &Instrument) -> Option<Stream> {
 /// View is implemented for all `Fn(&Instrument) -> Option<Stream>`.
 ///
 /// ```
-/// use opentelemetry_sdk::metrics::{Instrument, MeterProvider, Stream};
+/// use ts_opentelemetry_sdk::metrics::{Instrument, MeterProvider, Stream};
 ///
 /// // return streams for the given instrument
 /// let my_view = |i: &Instrument| {
@@ -93,7 +93,7 @@ impl View for Box<dyn View> {
 /// # Example
 ///
 /// ```
-/// use opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
+/// use ts_opentelemetry_sdk::metrics::{new_view, Aggregation, Instrument, Stream};
 ///
 /// let criteria = Instrument::new().name("counter_*");
 /// let mask = Stream::new().aggregation(Aggregation::Sum);

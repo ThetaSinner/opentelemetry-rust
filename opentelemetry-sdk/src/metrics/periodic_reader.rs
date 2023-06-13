@@ -11,7 +11,7 @@ use futures_util::{
     stream::{self, FusedStream},
     Stream, StreamExt,
 };
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     metrics::{MetricsError, Result},
     Context,
@@ -174,15 +174,15 @@ where
 /// # Example
 ///
 /// ```no_run
-/// use opentelemetry_sdk::metrics::PeriodicReader;
+/// use ts_opentelemetry_sdk::metrics::PeriodicReader;
 /// # fn example<E, R>(get_exporter: impl Fn() -> E, get_runtime: impl Fn() -> R)
 /// # where
-/// #     E: opentelemetry_sdk::metrics::exporter::PushMetricsExporter,
-/// #     R: opentelemetry_sdk::runtime::Runtime,
+/// #     E: ts_opentelemetry_sdk::metrics::exporter::PushMetricsExporter,
+/// #     R: ts_opentelemetry_sdk::runtime::Runtime,
 /// # {
 ///
 /// let exporter = get_exporter(); // set up a push exporter like OTLP
-/// let runtime = get_runtime(); // select runtime: e.g. opentelemetry_sdk:runtime::Tokio
+/// let runtime = get_runtime(); // select runtime: e.g. ts_opentelemetry_sdk:runtime::Tokio
 ///
 /// let reader = PeriodicReader::builder(exporter, runtime).build();
 /// # drop(reader);

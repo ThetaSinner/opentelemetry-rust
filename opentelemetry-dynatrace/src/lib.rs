@@ -8,10 +8,10 @@
 //! You can start a new Dynatrace metrics pipeline by using [`DynatracePipelineBuilder::metrics()`].
 //!
 //! ```no_run
-//! use opentelemetry::runtime;
-//! use opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
-//! use opentelemetry::sdk::metrics::selectors;
-//! use opentelemetry::sdk::util::tokio_interval_stream;
+//! use ts_opentelemetry::runtime;
+//! use ts_opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
+//! use ts_opentelemetry::sdk::metrics::selectors;
+//! use ts_opentelemetry::sdk::util::tokio_interval_stream;
 //! use opentelemetry_dynatrace::ExportConfig;
 //!
 //! fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
@@ -43,10 +43,10 @@
 //!
 //! ```
 //! # #[cfg(feature = "reqwest-client")] {
-//! use opentelemetry::runtime;
-//! use opentelemetry::sdk::metrics::selectors;
-//! use opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
-//! use opentelemetry::KeyValue;
+//! use ts_opentelemetry::runtime;
+//! use ts_opentelemetry::sdk::metrics::selectors;
+//! use ts_opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
+//! use ts_opentelemetry::KeyValue;
 //! use opentelemetry_dynatrace::transform::DimensionSet;
 //! use opentelemetry_dynatrace::ExportConfig;
 //! use std::collections::HashMap;
@@ -122,8 +122,8 @@ pub use crate::exporter::ExportConfig;
 #[cfg(feature = "metrics")]
 pub use crate::metric::{DynatraceMetricsPipeline, MetricsExporter};
 
-use opentelemetry::sdk::export::ExportError;
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry::sdk::export::ExportError;
+use ts_opentelemetry_http::HttpClient;
 use std::collections::HashMap;
 
 /// Dynatrace pipeline builder.
@@ -236,9 +236,9 @@ impl DynatraceExporterBuilder {
 /// ## Examples
 ///
 /// ```no_run
-/// use opentelemetry::runtime;
-/// use opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
-/// use opentelemetry::sdk::metrics::selectors;
+/// use ts_opentelemetry::runtime;
+/// use ts_opentelemetry::sdk::export::metrics::aggregation::cumulative_temporality_selector;
+/// use ts_opentelemetry::sdk::metrics::selectors;
 /// # fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
 /// let meter = opentelemetry_dynatrace::new_pipeline()
 ///     .metrics(

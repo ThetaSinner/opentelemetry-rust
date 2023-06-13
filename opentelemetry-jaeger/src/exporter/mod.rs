@@ -29,8 +29,8 @@ use std::sync::Arc;
 #[allow(unused_imports)] // this is actually used to configure authentication
 use isahc::prelude::Configurable;
 
-use opentelemetry::sdk::export::ExportError;
-use opentelemetry::{
+use ts_opentelemetry::sdk::export::ExportError;
+use ts_opentelemetry::{
     sdk,
     sdk::export::trace,
     trace::{Event, Link, SpanKind, Status},
@@ -358,9 +358,9 @@ mod tests {
     use super::SPAN_KIND;
     use crate::exporter::thrift::jaeger::Tag;
     use crate::exporter::{build_span_tags, OTEL_STATUS_CODE, OTEL_STATUS_DESCRIPTION};
-    use opentelemetry::sdk::trace::EvictedHashMap;
-    use opentelemetry::trace::{SpanKind, Status};
-    use opentelemetry::KeyValue;
+    use ts_opentelemetry::sdk::trace::EvictedHashMap;
+    use ts_opentelemetry::trace::{SpanKind, Status};
+    use ts_opentelemetry::KeyValue;
 
     fn assert_tag_contains(tags: Vec<Tag>, key: &'static str, expect_val: &'static str) {
         assert_eq!(

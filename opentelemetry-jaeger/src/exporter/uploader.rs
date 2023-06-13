@@ -3,8 +3,8 @@
 use crate::exporter::collector;
 use crate::exporter::{agent, jaeger};
 use async_trait::async_trait;
-use opentelemetry::sdk::export::trace;
-use opentelemetry::sdk::export::trace::ExportResult;
+use ts_opentelemetry::sdk::export::trace;
+use ts_opentelemetry::sdk::export::trace::ExportResult;
 use std::fmt::Debug;
 
 use crate::exporter::thrift::jaeger::Batch;

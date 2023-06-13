@@ -18,8 +18,8 @@
 //! ```
 //! # #[cfg(feature="trace")]
 //! # {
-//! use opentelemetry_api::trace::{Tracer, noop::NoopTracerProvider};
-//! use opentelemetry_api::global;
+//! use ts_opentelemetry_api::trace::{Tracer, noop::NoopTracerProvider};
+//! use ts_opentelemetry_api::global;
 //!
 //! fn init_tracer() {
 //!     // Swap this no-op provider for your tracing service of choice (jaeger, zipkin, etc)
@@ -50,8 +50,8 @@
 //! ```
 //! # #[cfg(feature="trace")]
 //! # {
-//! use opentelemetry_api::trace::{Tracer, TracerProvider};
-//! use opentelemetry_api::global;
+//! use ts_opentelemetry_api::trace::{Tracer, TracerProvider};
+//! use ts_opentelemetry_api::global;
 //!
 //! pub fn my_traced_library_function() {
 //!     // End users of your library will configure their global tracer provider
@@ -91,8 +91,8 @@
 //! ```
 //! # #[cfg(feature="metrics")]
 //! # {
-//! use opentelemetry_api::metrics::{Meter, noop::NoopMeterProvider};
-//! use opentelemetry_api::{global, Context, KeyValue};
+//! use ts_opentelemetry_api::metrics::{Meter, noop::NoopMeterProvider};
+//! use ts_opentelemetry_api::{global, Context, KeyValue};
 //!
 //! fn init_meter() {
 //!     let provider = NoopMeterProvider::new();
@@ -123,7 +123,7 @@
 //! ```
 //! # #[cfg(feature="metrics")]
 //! # {
-//! use opentelemetry_api::{global, Context, KeyValue};
+//! use ts_opentelemetry_api::{global, Context, KeyValue};
 //!
 //! pub fn my_traced_library_function() {
 //!     // End users of your library will configure their global meter provider

@@ -1,5 +1,5 @@
 use crate::{ExportConfig, Protocol};
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry_http::HttpClient;
 use std::collections::HashMap;
 use std::sync::Arc;
 

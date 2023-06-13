@@ -1,14 +1,14 @@
 use once_cell::sync::Lazy;
-use opentelemetry_api::global;
-use opentelemetry_api::trace::TraceError;
-use opentelemetry_api::{
+use ts_opentelemetry_api::global;
+use ts_opentelemetry_api::trace::TraceError;
+use ts_opentelemetry_api::{
     metrics,
     trace::{TraceContextExt, Tracer},
     Context, Key, KeyValue,
 };
 use opentelemetry_otlp::WithExportConfig;
-use opentelemetry_sdk::metrics as sdkmetrics;
-use opentelemetry_sdk::trace as sdktrace;
+use ts_opentelemetry_sdk::metrics as sdkmetrics;
+use ts_opentelemetry_sdk::trace as sdktrace;
 use std::error::Error;
 
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
@@ -19,7 +19,7 @@ fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
                 .http()
                 .with_endpoint("http://localhost:4318/v1/traces"),
         )
-        .install_batch(opentelemetry_sdk::runtime::Tokio)
+        .install_batch(ts_opentelemetry_sdk::runtime::Tokio)
 }
 
 fn init_metrics() -> metrics::Result<sdkmetrics::MeterProvider> {
@@ -28,7 +28,7 @@ fn init_metrics() -> metrics::Result<sdkmetrics::MeterProvider> {
         ..opentelemetry_otlp::ExportConfig::default()
     };
     opentelemetry_otlp::new_pipeline()
-        .metrics(opentelemetry_sdk::runtime::Tokio)
+        .metrics(ts_opentelemetry_sdk::runtime::Tokio)
         .with_exporter(
             opentelemetry_otlp::new_exporter()
                 .http()

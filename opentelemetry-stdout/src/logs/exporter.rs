@@ -2,18 +2,18 @@ use core::fmt;
 use std::io::{stdout, Write};
 
 use async_trait::async_trait;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     logs::{LogError, LogResult},
     ExportError,
 };
-use opentelemetry_sdk::export::logs::{ExportResult, LogData};
+use ts_opentelemetry_sdk::export::logs::{ExportResult, LogData};
 
 type Encoder =
     Box<dyn Fn(&mut dyn Write, crate::logs::transform::LogData) -> LogResult<()> + Send + Sync>;
 
 /// A [`LogExporter`] that writes to [`Stdout`] or other configured [`Write`].
 ///
-/// [`LogExporter`]: opentelemetry_sdk::export::logs::LogExporter
+/// [`LogExporter`]: ts_opentelemetry_sdk::export::logs::LogExporter
 /// [`Write`]: std::io::Write
 /// [`Stdout`]: std::io::Stdout
 pub struct LogExporter {
@@ -41,7 +41,7 @@ impl fmt::Debug for LogExporter {
 }
 
 #[async_trait]
-impl opentelemetry_sdk::export::logs::LogExporter for LogExporter {
+impl ts_opentelemetry_sdk::export::logs::LogExporter for LogExporter {
     /// Export spans to stdout
     async fn export(&mut self, batch: Vec<LogData>) -> ExportResult {
         if let Some(writer) = &mut self.writer {

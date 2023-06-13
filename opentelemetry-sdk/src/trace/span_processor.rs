@@ -31,8 +31,8 @@
 //!   +-----+--------------+   +---------------------+
 //! ```
 //!
-//! [`is_recording`]: opentelemetry_api::trace::Span::is_recording()
-//! [`TracerProvider`]: opentelemetry_api::trace::TracerProvider
+//! [`is_recording`]: ts_opentelemetry_api::trace::Span::is_recording()
+//! [`TracerProvider`]: ts_opentelemetry_api::trace::TracerProvider
 
 use crate::export::trace::{ExportResult, SpanData, SpanExporter};
 use crate::runtime::{RuntimeChannel, TrySend};
@@ -44,8 +44,8 @@ use futures_util::{
     stream::{self, FusedStream, FuturesUnordered},
     Stream, StreamExt as _,
 };
-use opentelemetry_api::global;
-use opentelemetry_api::{
+use ts_opentelemetry_api::global;
+use ts_opentelemetry_api::{
     trace::{TraceError, TraceResult},
     Context,
 };
@@ -221,8 +221,8 @@ enum Message {
 /// ```
 /// # #[cfg(feature="tokio")]
 /// # {
-/// use opentelemetry_api::global;
-/// use opentelemetry_sdk::{runtime, testing::trace::NoopSpanExporter, trace};
+/// use ts_opentelemetry_api::global;
+/// use ts_opentelemetry_sdk::{runtime, testing::trace::NoopSpanExporter, trace};
 /// use std::time::Duration;
 ///
 /// #[tokio::main]
@@ -719,7 +719,7 @@ mod tests {
     };
     use crate::trace::{BatchConfig, EvictedHashMap, EvictedQueue};
     use async_trait::async_trait;
-    use opentelemetry_api::trace::{SpanContext, SpanId, SpanKind, Status};
+    use ts_opentelemetry_api::trace::{SpanContext, SpanId, SpanKind, Status};
     use std::fmt::Debug;
     use std::future::Future;
     use std::time::Duration;
@@ -742,8 +742,8 @@ mod tests {
             parent_span_id: SpanId::INVALID,
             span_kind: SpanKind::Internal,
             name: "opentelemetry".into(),
-            start_time: opentelemetry_api::time::now(),
-            end_time: opentelemetry_api::time::now(),
+            start_time: ts_opentelemetry_api::time::now(),
+            end_time: ts_opentelemetry_api::time::now(),
             attributes: EvictedHashMap::new(0, 0),
             events: EvictedQueue::new(0),
             links: EvictedQueue::new(0),

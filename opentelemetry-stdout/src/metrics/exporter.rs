@@ -5,8 +5,8 @@ use std::{
 };
 
 use async_trait::async_trait;
-use opentelemetry_api::metrics::{MetricsError, Result};
-use opentelemetry_sdk::metrics::{
+use ts_opentelemetry_api::metrics::{MetricsError, Result};
+use ts_opentelemetry_sdk::metrics::{
     data,
     exporter::PushMetricsExporter,
     reader::{

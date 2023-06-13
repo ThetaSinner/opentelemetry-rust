@@ -5,9 +5,9 @@ use crate::exporter::config::{
 };
 use crate::exporter::uploader::{AsyncUploader, SyncUploader, Uploader};
 use crate::{Error, Exporter, JaegerTraceRuntime};
-use opentelemetry::sdk;
-use opentelemetry::sdk::trace::{BatchConfig, Config, TracerProvider};
-use opentelemetry::trace::TraceError;
+use ts_opentelemetry::sdk;
+use ts_opentelemetry::sdk::trace::{BatchConfig, Config, TracerProvider};
+use ts_opentelemetry::trace::TraceError;
 use std::borrow::BorrowMut;
 use std::sync::Arc;
 use std::{env, net};
@@ -44,14 +44,14 @@ const DEFAULT_AGENT_ENDPOINT: &str = "127.0.0.1:6831";
 /// For example, OSX UDP packet limit is 9216 by default. You can configure the pipeline as following
 /// to avoid UDP packet breaches the limit.
 ///```no_run
-/// # use opentelemetry::trace::TraceError;
+/// # use ts_opentelemetry::trace::TraceError;
 /// # fn main() -> Result<(), TraceError>{
 /// let tracer = opentelemetry_jaeger::new_agent_pipeline()
 ///         .with_endpoint("localhost:6831")
 ///         .with_service_name("my_app")
 ///         .with_max_packet_size(9_216)
 ///         .with_auto_split_batch(true)
-///         .install_batch(opentelemetry::runtime::Tokio).unwrap();
+///         .install_batch(ts_opentelemetry::runtime::Tokio).unwrap();
 /// # Ok(())
 /// # }
 ///```
@@ -218,7 +218,7 @@ impl AgentPipeline {
     /// # Examples
     /// Set service name via resource.
     /// ```rust
-    /// use opentelemetry::{sdk::{self, Resource}, KeyValue};
+    /// use ts_opentelemetry::{sdk::{self, Resource}, KeyValue};
     ///
     /// let pipeline = opentelemetry_jaeger::new_agent_pipeline()
     ///                 .with_trace_config(
@@ -240,7 +240,7 @@ impl AgentPipeline {
     /// # Examples
     /// Set max queue size.
     /// ```rust
-    /// use opentelemetry::sdk::trace::BatchConfig;
+    /// use ts_opentelemetry::sdk::trace::BatchConfig;
     ///
     /// let pipeline = opentelemetry_jaeger::new_agent_pipeline()
     ///                 .with_batch_processor_config(
@@ -286,7 +286,7 @@ impl AgentPipeline {
     /// Commonly used runtime are provided via `rt-tokio`, `rt-tokio-current-thread`, `rt-async-std`
     /// features.
     ///
-    /// [`shut_down_tracer_provider`]: opentelemetry::global::shutdown_tracer_provider
+    /// [`shut_down_tracer_provider`]: ts_opentelemetry::global::shutdown_tracer_provider
     pub fn build_batch<R>(mut self, runtime: R) -> Result<TracerProvider, TraceError>
     where
         R: JaegerTraceRuntime,

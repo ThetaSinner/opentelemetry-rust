@@ -6,8 +6,8 @@ use crate::metrics::reader::{
 };
 use crate::metrics::{data, Aggregation, InstrumentKind};
 use async_trait::async_trait;
-use opentelemetry_api::metrics::MetricsError;
-use opentelemetry_api::metrics::Result;
+use ts_opentelemetry_api::metrics::MetricsError;
+use ts_opentelemetry_api::metrics::Result;
 use std::collections::VecDeque;
 use std::fmt;
 use std::sync::{Arc, Mutex};
@@ -27,11 +27,11 @@ use std::sync::{Arc, Mutex};
 /// # Example
 ///
 /// ```
-///# use opentelemetry_sdk::{metrics, runtime};
-///# use opentelemetry_api::{Context, KeyValue};
-///# use opentelemetry_api::metrics::MeterProvider;
-///# use opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
-///# use opentelemetry_sdk::metrics::PeriodicReader;
+///# use ts_opentelemetry_sdk::{metrics, runtime};
+///# use ts_opentelemetry_api::{Context, KeyValue};
+///# use ts_opentelemetry_api::metrics::MeterProvider;
+///# use ts_opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
+///# use ts_opentelemetry_sdk::metrics::PeriodicReader;
 ///
 ///# #[tokio::main]
 ///# async fn main() {
@@ -92,7 +92,7 @@ impl Default for InMemoryMetricsExporter {
 /// # Example
 ///
 /// ```
-/// # use opentelemetry_sdk::testing::metrics::{InMemoryMetricsExporter, InMemoryMetricsExporterBuilder};
+/// # use ts_opentelemetry_sdk::testing::metrics::{InMemoryMetricsExporter, InMemoryMetricsExporterBuilder};
 ///
 /// let exporter = InMemoryMetricsExporterBuilder::new().build();
 /// ```
@@ -165,7 +165,7 @@ impl InMemoryMetricsExporter {
     /// # Example
     ///
     /// ```
-    /// # use opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
+    /// # use ts_opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
     ///
     /// let exporter = InMemoryMetricsExporter::default();
     /// let finished_metrics = exporter.get_finished_metrics().unwrap();
@@ -182,7 +182,7 @@ impl InMemoryMetricsExporter {
     /// # Example
     ///
     /// ```
-    /// # use opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
+    /// # use ts_opentelemetry_sdk::testing::metrics::InMemoryMetricsExporter;
     ///
     /// let exporter = InMemoryMetricsExporter::default();
     /// exporter.reset();

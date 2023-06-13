@@ -9,9 +9,9 @@ use std::fmt::Formatter;
 use async_channel::Sender;
 
 use crate::trace::TracezMessage;
-use opentelemetry::sdk::trace::{Span, SpanProcessor};
-use opentelemetry::trace::TraceResult;
-use opentelemetry::{sdk::export::trace::SpanData, Context};
+use ts_opentelemetry::sdk::trace::{Span, SpanProcessor};
+use ts_opentelemetry::trace::TraceResult;
+use ts_opentelemetry::{sdk::export::trace::SpanData, Context};
 
 /// ZPagesSpanProcessor is an alternative to external exporters. It sends span data to zPages server
 /// where it will be archive and user can use this information for debug purpose.

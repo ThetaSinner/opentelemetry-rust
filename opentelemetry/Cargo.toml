@@ -21,18 +21,18 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-ts_opentelemetry_api = { version = "0.20", path = "../opentelemetry-api" }
-ts_opentelemetry_sdk = { version = "0.20", path = "../opentelemetry-sdk" }
+ts_opentelemetry_api = { version = "0.20.0-beta.1", path = "../opentelemetry-api" }
+ts_opentelemetry_sdk = { version = "0.20.0-beta.1", path = "../opentelemetry-sdk" }
 
 [dev-dependencies]
 ts_opentelemetry_stdout = { path = "../opentelemetry-stdout" }
 
 [features]
 default = ["trace"]
-trace = ["opentelemetry_api/trace", "opentelemetry_sdk/trace", "opentelemetry-stdout/trace"]
-metrics = ["opentelemetry_api/metrics", "opentelemetry_sdk/metrics", "opentelemetry-stdout/metrics"]
-logs = ["opentelemetry_sdk/logs"]
-testing = ["opentelemetry_api/testing", "opentelemetry_sdk/testing"]
-rt-tokio = ["opentelemetry_sdk/rt-tokio"]
-rt-tokio-current-thread = ["opentelemetry_sdk/rt-tokio-current-thread"]
-rt-async-std = ["opentelemetry_sdk/rt-async-std"]
+trace = ["ts_opentelemetry_api/trace", "ts_opentelemetry_sdk/trace", "ts_opentelemetry_stdout/trace"]
+metrics = ["ts_opentelemetry_api/metrics", "ts_opentelemetry_sdk/metrics", "ts_opentelemetry_stdout/metrics"]
+logs = ["ts_opentelemetry_sdk/logs"]
+testing = ["ts_opentelemetry_api/testing", "ts_opentelemetry_sdk/testing"]
+rt-tokio = ["ts_opentelemetry_sdk/rt-tokio"]
+rt-tokio-current-thread = ["ts_opentelemetry_sdk/rt-tokio-current-thread"]
+rt-async-std = ["ts_opentelemetry_sdk/rt-async-std"]

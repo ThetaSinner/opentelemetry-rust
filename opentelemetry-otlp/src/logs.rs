@@ -36,7 +36,7 @@ use {
         header::{HeaderName, HeaderValue, CONTENT_TYPE},
         Method, Uri,
     },
-    opentelemetry_http::HttpClient,
+    ts_opentelemetry_http::HttpClient,
     opentelemetry_proto::tonic::collector::logs::v1::ExportLogsServiceRequest as ProstRequest,
     prost::Message,
     std::convert::TryFrom,
@@ -54,8 +54,8 @@ use std::{
     time::Duration,
 };
 
-use opentelemetry_api::logs::{LogError, LoggerProvider};
-use opentelemetry_sdk::{self, export::logs::LogData, logs::BatchMessage, runtime::RuntimeChannel};
+use ts_opentelemetry_api::logs::{LogError, LoggerProvider};
+use ts_opentelemetry_sdk::{self, export::logs::LogData, logs::BatchMessage, runtime::RuntimeChannel};
 
 impl OtlpPipeline {
     /// Create a OTLP logging pipeline.
@@ -289,8 +289,8 @@ impl LogExporter {
 }
 
 #[async_trait]
-impl opentelemetry_sdk::export::logs::LogExporter for LogExporter {
-    async fn export(&mut self, batch: Vec<LogData>) -> opentelemetry_api::logs::LogResult<()> {
+impl ts_opentelemetry_sdk::export::logs::LogExporter for LogExporter {
+    async fn export(&mut self, batch: Vec<LogData>) -> ts_opentelemetry_api::logs::LogResult<()> {
         match self {
             #[cfg(feature = "grpc-sys")]
             LogExporter::Grpcio {
@@ -403,7 +403,7 @@ impl opentelemetry_sdk::export::logs::LogExporter for LogExporter {
 #[derive(Default, Debug)]
 pub struct OtlpLogPipeline {
     exporter_builder: Option<LogExporterBuilder>,
-    log_config: Option<opentelemetry_sdk::logs::Config>,
+    log_config: Option<ts_opentelemetry_sdk::logs::Config>,
 }
 
 impl OtlpLogPipeline {
@@ -416,11 +416,11 @@ impl OtlpLogPipeline {
     /// Returns a [`Logger`] with the name `opentelemetry-otlp` and the
     /// current crate version, using the configured log exporter.
     ///
-    /// [`Logger`]: opentelemetry_sdk::logs::Logger
+    /// [`Logger`]: ts_opentelemetry_sdk::logs::Logger
     pub fn simple(
         self,
         include_trace_context: bool,
-    ) -> Result<opentelemetry_sdk::logs::Logger, LogError> {
+    ) -> Result<ts_opentelemetry_sdk::logs::Logger, LogError> {
         Ok(build_simple_with_exporter(
             self.exporter_builder
                 .ok_or(crate::Error::NoExporterBuilder)?
@@ -434,12 +434,12 @@ impl OtlpLogPipeline {
     /// current crate version, using the configured log exporter and a
     /// batch log processor.
     ///
-    /// [`Logger`]: opentelemetry_sdk::logs::Logger
+    /// [`Logger`]: ts_opentelemetry_sdk::logs::Logger
     pub fn batch<R: RuntimeChannel<BatchMessage>>(
         self,
         runtime: R,
         include_trace_context: bool,
-    ) -> Result<opentelemetry_sdk::logs::Logger, LogError> {
+    ) -> Result<ts_opentelemetry_sdk::logs::Logger, LogError> {
         Ok(build_batch_with_exporter(
             self.exporter_builder
                 .ok_or(crate::Error::NoExporterBuilder)?
@@ -453,11 +453,11 @@ impl OtlpLogPipeline {
 
 fn build_simple_with_exporter(
     exporter: LogExporter,
-    log_config: Option<opentelemetry_sdk::logs::Config>,
+    log_config: Option<ts_opentelemetry_sdk::logs::Config>,
     include_trace_context: bool,
-) -> opentelemetry_sdk::logs::Logger {
+) -> ts_opentelemetry_sdk::logs::Logger {
     let mut provider_builder =
-        opentelemetry_sdk::logs::LoggerProvider::builder().with_simple_exporter(exporter);
+        ts_opentelemetry_sdk::logs::LoggerProvider::builder().with_simple_exporter(exporter);
     if let Some(config) = log_config {
         provider_builder = provider_builder.with_config(config);
     }
@@ -473,12 +473,12 @@ fn build_simple_with_exporter(
 
 fn build_batch_with_exporter<R: RuntimeChannel<BatchMessage>>(
     exporter: LogExporter,
-    log_config: Option<opentelemetry_sdk::logs::Config>,
+    log_config: Option<ts_opentelemetry_sdk::logs::Config>,
     runtime: R,
     include_trace_context: bool,
-) -> opentelemetry_sdk::logs::Logger {
+) -> ts_opentelemetry_sdk::logs::Logger {
     let mut provider_builder =
-        opentelemetry_sdk::logs::LoggerProvider::builder().with_batch_exporter(exporter, runtime);
+        ts_opentelemetry_sdk::logs::LoggerProvider::builder().with_batch_exporter(exporter, runtime);
     if let Some(config) = log_config {
         provider_builder = provider_builder.with_config(config);
     }

@@ -6,20 +6,20 @@ use async_trait::async_trait;
 use futures_core::future::BoxFuture;
 use http::Uri;
 use model::endpoint::Endpoint;
-use opentelemetry::runtime::RuntimeChannel;
-use opentelemetry::sdk::resource::ResourceDetector;
-use opentelemetry::sdk::resource::SdkProvidedResourceDetector;
-use opentelemetry::sdk::trace::Config;
-use opentelemetry::sdk::Resource;
-use opentelemetry::{
+use ts_opentelemetry::runtime::RuntimeChannel;
+use ts_opentelemetry::sdk::resource::ResourceDetector;
+use ts_opentelemetry::sdk::resource::SdkProvidedResourceDetector;
+use ts_opentelemetry::sdk::trace::Config;
+use ts_opentelemetry::sdk::Resource;
+use ts_opentelemetry::{
     global, sdk,
     sdk::export::{trace, ExportError},
     sdk::trace::BatchMessage,
     trace::{TraceError, TracerProvider},
     KeyValue,
 };
-use opentelemetry_http::HttpClient;
-use opentelemetry_semantic_conventions as semcov;
+use ts_opentelemetry_http::HttpClient;
+use ts_opentelemetry_semantic_conventions as semcov;
 use std::borrow::Cow;
 #[cfg(all(
     not(feature = "reqwest-client"),

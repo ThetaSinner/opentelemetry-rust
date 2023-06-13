@@ -1,8 +1,8 @@
 #[cfg(feature = "integration_test")]
 mod tests {
-    use opentelemetry::sdk::trace::Tracer as SdkTracer;
-    use opentelemetry::trace::{Status, TraceContextExt, Tracer};
-    use opentelemetry::KeyValue;
+    use ts_opentelemetry::sdk::trace::Tracer as SdkTracer;
+    use ts_opentelemetry::trace::{Status, TraceContextExt, Tracer};
+    use ts_opentelemetry::KeyValue;
     use opentelemetry_jaeger::testing::{
         jaeger_api_v2 as jaeger_api, jaeger_client::JaegerTestClient,
     };
@@ -73,7 +73,7 @@ mod tests {
                     opentelemetry_jaeger::new_agent_pipeline()
                         .with_endpoint(agent_endpoint)
                         .with_service_name(format!("{}-{}", SERVICE_NAME, "agent"))
-                        .install_batch(opentelemetry::runtime::Tokio)
+                        .install_batch(ts_opentelemetry::runtime::Tokio)
                         .expect("cannot create tracer using default configuration")
                 }),
             ),
@@ -84,7 +84,7 @@ mod tests {
                         .with_endpoint(collector_endpoint)
                         .with_reqwest()
                         .with_service_name(format!("{}-{}", SERVICE_NAME, "collector_reqwest"))
-                        .install_batch(opentelemetry::runtime::Tokio)
+                        .install_batch(ts_opentelemetry::runtime::Tokio)
                         .expect("cannot create tracer using default configuration")
                 }),
             ),
@@ -95,7 +95,7 @@ mod tests {
                         .with_endpoint(collector_endpoint)
                         .with_isahc()
                         .with_service_name(format!("{}-{}", SERVICE_NAME, "collector_isahc"))
-                        .install_batch(opentelemetry::runtime::Tokio)
+                        .install_batch(ts_opentelemetry::runtime::Tokio)
                         .expect("cannot create tracer using default configuration")
                 }),
             ),
@@ -106,7 +106,7 @@ mod tests {
                         .with_endpoint(collector_endpoint)
                         .with_surf()
                         .with_service_name(format!("{}-{}", SERVICE_NAME, "collector_surf"))
-                        .install_batch(opentelemetry::runtime::Tokio)
+                        .install_batch(ts_opentelemetry::runtime::Tokio)
                         .expect("cannot create tracer using default configuration")
                 }),
             ),
@@ -117,7 +117,7 @@ mod tests {
                         .with_endpoint(collector_endpoint)
                         .with_hyper()
                         .with_service_name(format!("{}-{}", SERVICE_NAME, "collector_hyper"))
-                        .install_batch(opentelemetry::runtime::Tokio)
+                        .install_batch(ts_opentelemetry::runtime::Tokio)
                         .expect("cannot create tracer using default configuration")
                 }),
             ),

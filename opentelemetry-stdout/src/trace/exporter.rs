@@ -2,8 +2,8 @@ use core::fmt;
 use std::io::{stdout, Write};
 
 use futures_util::future::BoxFuture;
-use opentelemetry_api::trace::{TraceError, TraceResult};
-use opentelemetry_sdk::export::{self, trace::ExportResult};
+use ts_opentelemetry_api::trace::{TraceError, TraceResult};
+use ts_opentelemetry_sdk::export::{self, trace::ExportResult};
 
 use crate::trace::transform::SpanData;
 
@@ -34,7 +34,7 @@ impl Default for SpanExporter {
     }
 }
 
-impl opentelemetry_sdk::export::trace::SpanExporter for SpanExporter {
+impl ts_opentelemetry_sdk::export::trace::SpanExporter for SpanExporter {
     fn export(&mut self, batch: Vec<export::trace::SpanData>) -> BoxFuture<'static, ExportResult> {
         let res = if let Some(writer) = &mut self.writer {
             (self.encoder)(writer, crate::trace::SpanData::from(batch)).and_then(|_| {

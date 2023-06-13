@@ -45,7 +45,7 @@ thread_local! {
 /// # Examples
 ///
 /// ```
-/// use opentelemetry_api::Context;
+/// use ts_opentelemetry_api::Context;
 ///
 /// // Application-specific `a` and `b` values
 /// #[derive(Debug, PartialEq)]
@@ -94,7 +94,7 @@ impl Context {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// #[derive(Debug, PartialEq)]
     /// struct ValueA(&'static str);
@@ -118,7 +118,7 @@ impl Context {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// // Given some value types defined in your application
     /// #[derive(Debug, PartialEq)]
@@ -150,7 +150,7 @@ impl Context {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// // Given some value types defined in your application
     /// #[derive(Debug, PartialEq)]
@@ -177,7 +177,7 @@ impl Context {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// // Given some value types defined in your application
     /// #[derive(Debug, PartialEq)]
@@ -217,7 +217,7 @@ impl Context {
     /// # Examples
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// #[derive(Debug, PartialEq)]
     /// struct ValueA(&'static str);
@@ -236,7 +236,7 @@ impl Context {
     /// Guards do not need to be explicitly dropped:
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// #[derive(Debug, PartialEq)]
     /// struct ValueA(&'static str);
@@ -263,7 +263,7 @@ impl Context {
     /// entered:
     ///
     /// ```
-    /// use opentelemetry_api::Context;
+    /// use ts_opentelemetry_api::Context;
     ///
     /// #[derive(Debug, PartialEq)]
     /// struct ValueA(&'static str);

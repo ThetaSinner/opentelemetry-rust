@@ -9,15 +9,15 @@ use crate::transform::sink;
 use crate::{Error, OtlpPipeline};
 use async_trait::async_trait;
 use core::fmt;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     metrics::{MetricsError, Result},
 };
 #[cfg(feature = "grpc-tonic")]
-use opentelemetry_proto::tonic::collector::metrics::v1::{
+use ts_opentelemetry_proto::tonic::collector::metrics::v1::{
     metrics_service_client::MetricsServiceClient, ExportMetricsServiceRequest,
 };
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     metrics::{
         data::{ResourceMetrics, Temporality},
         exporter::PushMetricsExporter,
@@ -48,7 +48,7 @@ use {
         header::{HeaderName, HeaderValue, CONTENT_TYPE},
         Method, Uri,
     },
-    opentelemetry_http::HttpClient,
+    ts_opentelemetry_http::HttpClient,
     prost::Message,
     std::collections::HashMap,
     std::convert::TryFrom,

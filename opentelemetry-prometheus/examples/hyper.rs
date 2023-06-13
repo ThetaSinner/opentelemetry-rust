@@ -4,11 +4,11 @@ use hyper::{
     Body, Method, Request, Response, Server,
 };
 use once_cell::sync::Lazy;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::{Counter, Histogram, MeterProvider as _, Unit},
     Context, KeyValue,
 };
-use opentelemetry_sdk::metrics::MeterProvider;
+use ts_opentelemetry_sdk::metrics::MeterProvider;
 use prometheus::{Encoder, Registry, TextEncoder};
 use std::convert::Infallible;
 use std::sync::Arc;

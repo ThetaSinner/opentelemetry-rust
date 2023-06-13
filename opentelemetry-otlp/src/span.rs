@@ -10,7 +10,7 @@ use std::str::FromStr;
 #[cfg(feature = "grpc-tonic")]
 use {
     crate::exporter::tonic::{TonicConfig, TonicExporterBuilder},
-    opentelemetry_proto::tonic::collector::trace::v1::{
+    ts_opentelemetry_proto::tonic::collector::trace::v1::{
         trace_service_client::TraceServiceClient as TonicTraceServiceClient,
         ExportTraceServiceRequest as TonicRequest,
     },
@@ -28,7 +28,7 @@ use {
         CallOption, Channel as GrpcChannel, ChannelBuilder, ChannelCredentialsBuilder, Environment,
         MetadataBuilder,
     },
-    opentelemetry_proto::grpcio::{
+    ts_opentelemetry_proto::grpcio::{
         trace_service::ExportTraceServiceRequest as GrpcRequest,
         trace_service_grpc::TraceServiceClient as GrpcioTraceServiceClient,
     },
@@ -41,8 +41,8 @@ use {
         header::{HeaderName, HeaderValue, CONTENT_TYPE},
         Method, Uri,
     },
-    opentelemetry_http::HttpClient,
-    opentelemetry_proto::tonic::collector::trace::v1::ExportTraceServiceRequest as ProstRequest,
+    ts_opentelemetry_http::HttpClient,
+    ts_opentelemetry_proto::tonic::collector::trace::v1::ExportTraceServiceRequest as ProstRequest,
     prost::Message,
     std::convert::TryFrom,
 };
@@ -53,16 +53,16 @@ use {std::collections::HashMap, std::sync::Arc};
 use crate::exporter::ExportConfig;
 use crate::OtlpPipeline;
 
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     trace::{TraceError, TracerProvider},
 };
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     self as sdk,
     export::trace::{ExportResult, SpanData},
     trace::BatchMessage,
 };
-use opentelemetry_semantic_conventions::SCHEMA_URL;
+use ts_opentelemetry_semantic_conventions::SCHEMA_URL;
 
 use async_trait::async_trait;
 use sdk::runtime::RuntimeChannel;
@@ -124,7 +124,7 @@ impl OtlpTracePipeline {
     ///
     /// Returns a [`Tracer`] with the name `opentelemetry-otlp` and current crate version.
     ///
-    /// [`Tracer`]: opentelemetry_api::trace::Tracer
+    /// [`Tracer`]: ts_opentelemetry_api::trace::Tracer
     pub fn install_simple(self) -> Result<sdk::trace::Tracer, TraceError> {
         Ok(build_simple_with_exporter(
             self.exporter_builder
@@ -141,7 +141,7 @@ impl OtlpTracePipeline {
     ///
     /// `install_batch` will panic if not called within a tokio runtime
     ///
-    /// [`Tracer`]: opentelemetry_api::trace::Tracer
+    /// [`Tracer`]: ts_opentelemetry_api::trace::Tracer
     pub fn install_batch<R: RuntimeChannel<BatchMessage>>(
         self,
         runtime: R,
@@ -475,7 +475,7 @@ async fn http_send_request(
     headers: Option<HashMap<String, String>>,
     collector_endpoint: Uri,
 ) -> ExportResult {
-    use opentelemetry_http::ResponseExt;
+    use ts_opentelemetry_http::ResponseExt;
 
     let req = ProstRequest {
         resource_spans: batch.into_iter().map(Into::into).collect(),
@@ -506,7 +506,7 @@ async fn http_send_request(
 }
 
 #[async_trait]
-impl opentelemetry_sdk::export::trace::SpanExporter for SpanExporter {
+impl ts_opentelemetry_sdk::export::trace::SpanExporter for SpanExporter {
     fn export(
         &mut self,
         batch: Vec<SpanData>,

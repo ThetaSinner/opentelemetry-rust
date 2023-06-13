@@ -3,8 +3,8 @@
 //! Definitions: <https://github.com/uber/jaeger-idl/blob/master/thrift/>
 use std::time::{Duration, SystemTime};
 
-use opentelemetry::trace::Event;
-use opentelemetry::{Key, KeyValue, Value};
+use ts_opentelemetry::trace::Event;
+use ts_opentelemetry::{Key, KeyValue, Value};
 
 pub(crate) mod agent;
 pub(crate) mod jaeger;

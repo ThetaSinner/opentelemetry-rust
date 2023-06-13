@@ -3,8 +3,8 @@
 //! The stdout [`LogExporter`] writes debug printed [`LogRecord`]s to its configured
 //! [`Write`] instance. By default it will write to [`Stdout`].
 //!
-//! [`LogExporter`]: opentelemetry_sdk::export::logs::LogExporter
-//! [`LogRecord`]: opentelemetry_api::logs::LogRecord
+//! [`LogExporter`]: ts_opentelemetry_sdk::export::logs::LogExporter
+//! [`LogRecord`]: ts_opentelemetry_api::logs::LogRecord
 //! [`Write`]: std::io::Write
 //! [`Stdout`]: std::io::Stdout
 // TODO: Add an example for using this exporter.

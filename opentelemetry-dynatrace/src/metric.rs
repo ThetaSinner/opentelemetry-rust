@@ -12,18 +12,18 @@ use http::{
     header::{HeaderName, HeaderValue, AUTHORIZATION, CONTENT_TYPE, USER_AGENT},
     Method, Uri, Version,
 };
-use opentelemetry::metrics::Result;
-use opentelemetry::runtime::Runtime;
-use opentelemetry::sdk::export::metrics::aggregation::{
+use ts_opentelemetry::metrics::Result;
+use ts_opentelemetry::runtime::Runtime;
+use ts_opentelemetry::sdk::export::metrics::aggregation::{
     AggregationKind, Temporality, TemporalitySelector,
 };
-use opentelemetry::sdk::export::metrics::{AggregatorSelector, InstrumentationLibraryReader};
-use opentelemetry::sdk::metrics::controllers::BasicController;
-use opentelemetry::sdk::metrics::sdk_api::Descriptor;
-use opentelemetry::sdk::metrics::{controllers, processors};
-use opentelemetry::sdk::{export::metrics, Resource};
-use opentelemetry::{global, Context};
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry::sdk::export::metrics::{AggregatorSelector, InstrumentationLibraryReader};
+use ts_opentelemetry::sdk::metrics::controllers::BasicController;
+use ts_opentelemetry::sdk::metrics::sdk_api::Descriptor;
+use ts_opentelemetry::sdk::metrics::{controllers, processors};
+use ts_opentelemetry::sdk::{export::metrics, Resource};
+use ts_opentelemetry::{global, Context};
+use ts_opentelemetry_http::HttpClient;
 use std::collections::HashMap;
 use std::convert::TryFrom;
 use std::fmt::{Debug, Formatter, Write};

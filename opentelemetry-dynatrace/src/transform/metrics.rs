@@ -1,19 +1,19 @@
 //! OpenTelemetry Dynatrace Metrics
 use crate::transform::common::get_time;
-use opentelemetry::attributes::merge_iters;
-use opentelemetry::metrics::MetricsError;
-use opentelemetry::sdk::export::metrics::aggregation::{Count, Temporality, TemporalitySelector};
-use opentelemetry::sdk::metrics::aggregators::{
+use ts_opentelemetry::attributes::merge_iters;
+use ts_opentelemetry::metrics::MetricsError;
+use ts_opentelemetry::sdk::export::metrics::aggregation::{Count, Temporality, TemporalitySelector};
+use ts_opentelemetry::sdk::metrics::aggregators::{
     HistogramAggregator, LastValueAggregator, SumAggregator,
 };
-use opentelemetry::sdk::{
+use ts_opentelemetry::sdk::{
     export::metrics::{
         aggregation::{Histogram as SdkHistogram, LastValue, Sum as SdkSum},
         Record,
     },
     metrics::sdk_api::{Number, NumberKind},
 };
-use opentelemetry::{global, Key, KeyValue, Value};
+use ts_opentelemetry::{global, Key, KeyValue, Value};
 use std::borrow::Cow;
 use std::cmp;
 use std::collections::{btree_map, BTreeMap};
@@ -600,16 +600,16 @@ mod tests {
     use crate::transform::common::get_time;
     use crate::transform::metrics::MetricLine;
     use crate::transform::record_to_metric_line;
-    use opentelemetry::sdk::export::metrics::aggregation::{
+    use ts_opentelemetry::sdk::export::metrics::aggregation::{
         cumulative_temporality_selector, delta_temporality_selector,
     };
-    use opentelemetry::sdk::export::metrics::record;
-    use opentelemetry::sdk::metrics::aggregators::{
+    use ts_opentelemetry::sdk::export::metrics::record;
+    use ts_opentelemetry::sdk::metrics::aggregators::{
         histogram, last_value, Aggregator, SumAggregator,
     };
-    use opentelemetry::sdk::metrics::sdk_api::{Descriptor, InstrumentKind, Number, NumberKind};
-    use opentelemetry::{attributes::AttributeSet, metrics::MetricsError};
-    use opentelemetry::{Context, KeyValue};
+    use ts_opentelemetry::sdk::metrics::sdk_api::{Descriptor, InstrumentKind, Number, NumberKind};
+    use ts_opentelemetry::{attributes::AttributeSet, metrics::MetricsError};
+    use ts_opentelemetry::{Context, KeyValue};
     use std::borrow::Cow;
     use std::sync::Arc;
     use std::time::{Duration, SystemTime};
@@ -718,7 +718,7 @@ mod tests {
             attributes
                 .iter()
                 .cloned()
-                .map(|(k, v)| opentelemetry::KeyValue::new(k, v)),
+                .map(|(k, v)| ts_opentelemetry::KeyValue::new(k, v)),
         );
         let start_time = SystemTime::now();
         let end_time = SystemTime::now().checked_add(Duration::new(30, 0)).unwrap();

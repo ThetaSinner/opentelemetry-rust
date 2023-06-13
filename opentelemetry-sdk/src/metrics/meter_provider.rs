@@ -7,7 +7,7 @@ use std::{
     },
 };
 
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::{noop::NoopMeterCore, InstrumentProvider, Meter as ApiMeter, MetricsError, Result},
     Context, KeyValue,
 };
@@ -73,7 +73,7 @@ impl MeterProvider {
     }
 }
 
-impl opentelemetry_api::metrics::MeterProvider for MeterProvider {
+impl ts_opentelemetry_api::metrics::MeterProvider for MeterProvider {
     fn versioned_meter(
         &self,
         name: impl Into<Cow<'static, str>>,

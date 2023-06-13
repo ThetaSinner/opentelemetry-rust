@@ -8,7 +8,7 @@
 //! ## Usage
 //!
 //! ```
-//! use opentelemetry::sdk;
+//! use ts_opentelemetry::sdk;
 //! use opentelemetry_semantic_conventions as semconv;
 //!
 //! let _tracer = sdk::trace::TracerProvider::builder()

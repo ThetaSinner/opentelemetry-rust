@@ -1,6 +1,6 @@
 use crate::resource::ResourceDetector;
 use crate::Resource;
-use opentelemetry_api::KeyValue;
+use ts_opentelemetry_api::KeyValue;
 use std::time::Duration;
 
 /// Detect the telemetry SDK information used to capture data recorded by the instrumentation libraries.
@@ -8,7 +8,7 @@ use std::time::Duration;
 /// It provides:
 /// - The name of the telemetry SDK(`telemetry.sdk.name`). It will be `opentelemetry` for SDK provided by opentelemetry project.
 /// - The language of the telemetry SDK(`telemetry.sdk.language`). It will be `rust` for this SDK.
-/// - The version of the telemetry SDK(`telemetry.sdk.version`). It will be current `opentelemetry_sdk` crate version.
+/// - The version of the telemetry SDK(`telemetry.sdk.version`). It will be current `ts_opentelemetry_sdk` crate version.
 ///
 /// Note that the `telemetry.auto.version` is not provided as of now.
 ///

@@ -1,22 +1,22 @@
 use actix_service::Service;
 use actix_web::middleware::Logger;
 use actix_web::{web, App, HttpServer};
-use opentelemetry::trace::TraceError;
-use opentelemetry::{global, sdk::trace as sdktrace};
-use opentelemetry::{
+use ts_opentelemetry::trace::TraceError;
+use ts_opentelemetry::{global, sdk::trace as sdktrace};
+use ts_opentelemetry::{
     trace::{FutureExt, TraceContextExt, Tracer},
     Key,
 };
 
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
-    opentelemetry_jaeger::new_agent_pipeline()
+    ts_opentelemetry_jaeger::new_agent_pipeline()
         .with_endpoint("localhost:6831")
         .with_service_name("trace-udp-demo")
-        .with_trace_config(opentelemetry::sdk::trace::config().with_resource(
-            opentelemetry::sdk::Resource::new(vec![
-                opentelemetry::KeyValue::new("service.name", "my-service"), // this will not override the trace-udp-demo
-                opentelemetry::KeyValue::new("service.namespace", "my-namespace"),
-                opentelemetry::KeyValue::new("exporter", "jaeger"),
+        .with_trace_config(ts_opentelemetry::sdk::trace::config().with_resource(
+            ts_opentelemetry::sdk::Resource::new(vec![
+                ts_opentelemetry::KeyValue::new("service.name", "my-service"), // this will not override the trace-udp-demo
+                ts_opentelemetry::KeyValue::new("service.namespace", "my-namespace"),
+                ts_opentelemetry::KeyValue::new("exporter", "jaeger"),
             ]),
         ))
         .install_simple()

@@ -7,7 +7,7 @@ mod test {
         service::{make_service_fn, service_fn},
         Body, Method, Request, Response, Server,
     };
-    use opentelemetry::{
+    use ts_opentelemetry::{
         global, runtime,
         sdk::{export::metrics::aggregation::cumulative_temporality_selector, metrics::selectors},
         Context, Key, KeyValue,

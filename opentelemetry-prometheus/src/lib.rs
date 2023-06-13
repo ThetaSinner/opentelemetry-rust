@@ -3,8 +3,8 @@
 //! [Prometheus]: https://prometheus.io
 //!
 //! ```
-//! use opentelemetry_api::{metrics::MeterProvider as _, Context, KeyValue};
-//! use opentelemetry_sdk::metrics::MeterProvider;
+//! use ts_opentelemetry_api::{metrics::MeterProvider as _, Context, KeyValue};
+//! use ts_opentelemetry_sdk::metrics::MeterProvider;
 //! use prometheus::{Encoder, TextEncoder};
 //!
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -95,12 +95,12 @@
 #![cfg_attr(test, deny(warnings))]
 
 use once_cell::sync::OnceCell;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     metrics::{MetricsError, Result, Unit},
     Context, Key, Value,
 };
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     metrics::{
         data::{self, ResourceMetrics, Temporality},
         reader::{AggregationSelector, MetricProducer, MetricReader, TemporalitySelector},

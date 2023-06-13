@@ -1,17 +1,17 @@
 use hyper::http::HeaderValue;
 use hyper::{body::Body, Client};
-use opentelemetry::global;
-use opentelemetry::propagation::TextMapPropagator;
-use opentelemetry::sdk::propagation::TraceContextPropagator;
-use opentelemetry::sdk::trace::TracerProvider;
-use opentelemetry::trace::SpanKind;
-use opentelemetry::{
+use ts_opentelemetry::global;
+use ts_opentelemetry::propagation::TextMapPropagator;
+use ts_opentelemetry::sdk::propagation::TraceContextPropagator;
+use ts_opentelemetry::sdk::trace::TracerProvider;
+use ts_opentelemetry::trace::SpanKind;
+use ts_opentelemetry::{
     trace::{TraceContextExt, Tracer},
     Context, KeyValue,
 };
 use opentelemetry_contrib::trace::propagator::trace_context_response::TraceContextResponsePropagator;
-use opentelemetry_http::{HeaderExtractor, HeaderInjector};
-use opentelemetry_stdout::SpanExporter;
+use ts_opentelemetry_http::{HeaderExtractor, HeaderInjector};
+use ts_opentelemetry_stdout::SpanExporter;
 
 fn init_tracer() {
     global::set_text_map_propagator(TraceContextPropagator::new());

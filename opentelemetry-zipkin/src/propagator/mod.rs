@@ -14,7 +14,7 @@
 //! If `inject_encoding` is set to `B3Encoding::SingleHeader` then `b3` header is used to inject
 //! and extract. Otherwise, separate headers are used to inject and extract.
 use once_cell::sync::Lazy;
-use opentelemetry::{
+use ts_opentelemetry::{
     propagation::{text_map_propagator::FieldIter, Extractor, Injector, TextMapPropagator},
     trace::{SpanContext, SpanId, TraceContextExt, TraceFlags, TraceId, TraceState},
     Context,
@@ -316,7 +316,7 @@ impl TextMapPropagator for Propagator {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use opentelemetry::{
+    use ts_opentelemetry::{
         propagation::TextMapPropagator,
         testing::trace::TestSpan,
         trace::{SpanContext, SpanId, TraceFlags, TraceId},

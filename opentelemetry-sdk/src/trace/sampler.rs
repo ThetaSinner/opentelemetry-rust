@@ -1,4 +1,4 @@
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     trace::{
         Link, SamplingDecision, SamplingResult, SpanKind, TraceContextExt, TraceId, TraceState,
     },
@@ -12,7 +12,7 @@ mod jaeger_remote;
 #[cfg(feature = "jaeger_remote_sampler")]
 pub use jaeger_remote::{JaegerRemoteSampler, JaegerRemoteSamplerBuilder};
 #[cfg(feature = "jaeger_remote_sampler")]
-use opentelemetry_http::HttpClient;
+use ts_opentelemetry_http::HttpClient;
 
 /// The [`ShouldSample`] interface allows implementations to provide samplers
 /// which will return a sampling [`SamplingResult`] based on information that
@@ -56,12 +56,12 @@ use opentelemetry_http::HttpClient;
 /// MUST NOT allow this combination.
 ///
 /// [OpenTelemetry SDK]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/sdk.md#sampling
-/// [`SpanContext`]: opentelemetry_api::trace::SpanContext
-/// [`SpanContext::trace_flags()`]: opentelemetry_api::trace::SpanContext#method.trace_flags
+/// [`SpanContext`]: ts_opentelemetry_api::trace::SpanContext
+/// [`SpanContext::trace_flags()`]: ts_opentelemetry_api::trace::SpanContext#method.trace_flags
 /// [`SpanExporter`]: crate::export::trace::SpanExporter
 /// [`SpanProcessor`]: crate::trace::SpanProcessor
-/// [`Span`]: opentelemetry_api::trace::Span
-/// [`Span::is_recording()`]: opentelemetry_api::trace::Span#tymethod.is_recording
+/// [`Span`]: ts_opentelemetry_api::trace::Span
+/// [`Span::is_recording()`]: ts_opentelemetry_api::trace::Span#tymethod.is_recording
 pub trait ShouldSample: CloneShouldSample + Send + Sync + std::fmt::Debug {
     /// Returns the [`SamplingDecision`] for a [`Span`] to be created.
     ///
@@ -69,7 +69,7 @@ pub trait ShouldSample: CloneShouldSample + Send + Sync + std::fmt::Debug {
     /// make a decision about whether or not a [`Span`] should or should not be sampled. However,
     /// there are performance implications on the creation of a span
     ///
-    /// [`Span`]: opentelemetry_api::trace::Span
+    /// [`Span`]: ts_opentelemetry_api::trace::Span
     /// [`should_sample`]: ShouldSample::should_sample
     #[allow(clippy::too_many_arguments)]
     fn should_sample(
@@ -251,7 +251,7 @@ mod tests {
     use super::*;
     use crate::testing::trace::TestSpan;
     use crate::trace::{Sampler, ShouldSample};
-    use opentelemetry_api::trace::{SamplingDecision, SpanContext, SpanId, TraceFlags, TraceState};
+    use ts_opentelemetry_api::trace::{SamplingDecision, SpanContext, SpanId, TraceFlags, TraceState};
     use rand::Rng;
 
     #[rustfmt::skip]

@@ -19,16 +19,16 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [features]
-reqwest-blocking-client = ["reqwest/blocking", "opentelemetry-http/reqwest"]
-reqwest-client = ["reqwest", "opentelemetry-http/reqwest"]
-surf-client = ["surf", "opentelemetry-http/surf"]
+reqwest-blocking-client = ["reqwest/blocking", "ts_opentelemetry_http/reqwest"]
+reqwest-client = ["reqwest", "ts_opentelemetry_http/reqwest"]
+surf-client = ["surf", "ts_opentelemetry_http/surf"]
 
 [dependencies]
 indexmap = "1.8"
 once_cell = "1.12"
-opentelemetry = { version = "0.19", path = "../opentelemetry", features = ["trace"] }
-opentelemetry-http = { version = "0.8", path = "../opentelemetry-http" }
-opentelemetry-semantic-conventions = { version = "0.11", path = "../opentelemetry-semantic-conventions" }
+ts_opentelemetry = { version = "0.20.0-beta.1", path = "../opentelemetry", features = ["trace"] }
+ts_opentelemetry_http = { version = "0.9.0-beta.1", path = "../opentelemetry-http" }
+ts_opentelemetry_semantic_conventions = { version = "0.12.0-beta.1", path = "../opentelemetry-semantic-conventions" }
 rmp = "0.8"
 url = "2.2"
 reqwest = { version = "0.11", default-features = false, optional = true }
@@ -44,7 +44,7 @@ base64 = "0.13"
 bytes = "1"
 futures-util = { version = "0.3", features = ["io"] }
 isahc = "1.4"
-opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }
+ts_opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }
 
 [[example]]
 name = "datadog"

@@ -1,13 +1,13 @@
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{Body, Request, Response, Server};
-use opentelemetry::propagation::TextMapPropagator;
-use opentelemetry::sdk::trace::TracerProvider;
-use opentelemetry::trace::{SpanKind, TraceContextExt};
-use opentelemetry::Context;
-use opentelemetry::{global, sdk::propagation::TraceContextPropagator, trace::Tracer};
+use ts_opentelemetry::propagation::TextMapPropagator;
+use ts_opentelemetry::sdk::trace::TracerProvider;
+use ts_opentelemetry::trace::{SpanKind, TraceContextExt};
+use ts_opentelemetry::Context;
+use ts_opentelemetry::{global, sdk::propagation::TraceContextPropagator, trace::Tracer};
 use opentelemetry_contrib::trace::propagator::trace_context_response::TraceContextResponsePropagator;
-use opentelemetry_http::{HeaderExtractor, HeaderInjector};
-use opentelemetry_stdout::SpanExporter;
+use ts_opentelemetry_http::{HeaderExtractor, HeaderInjector};
+use ts_opentelemetry_stdout::SpanExporter;
 use std::{convert::Infallible, net::SocketAddr};
 
 async fn handle(req: Request<Body>) -> Result<Response<Body>, Infallible> {

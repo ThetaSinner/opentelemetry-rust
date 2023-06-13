@@ -1,7 +1,7 @@
 [package]
-name = "opentelemetry-zpages"
-version = "0.4.0"
-description = "ZPages implementation for OpenTelemetry"
+name = "ts_opentelemetry_zpages"
+version = "0.4.0-beta.1"
+description = "A fork of the ZPages implementation for OpenTelemetry"
 homepage = "https://github.com/open-telemetry/opentelemetry-rust/tree/master/opentelemetry-zpages"
 repository = "https://github.com/open-telemetry/opentelemetry-rust/tree/master/opentelemetry-zpages"
 readme = "README.md"
@@ -20,8 +20,8 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-opentelemetry = { version = "0.19", path = "../opentelemetry", default-features = false, features = ["trace"] }
-opentelemetry-proto = { version = "0.2", path = "../opentelemetry-proto", features = ["with-serde", "zpages", "gen-protoc"], default-features = false }
+ts_opentelemetry = { version = "0.20.0-beta.1", path = "../opentelemetry", default-features = false, features = ["trace"] }
+ts_opentelemetry_proto = { version = "0.3.0-beta.1", path = "../opentelemetry-proto", features = ["with-serde", "zpages", "gen-protoc"], default-features = false }
 async-channel = "1.6"
 futures-channel = "0.3"
 futures-util = { version = "0.3", default-features = false, features = ["std"] }
@@ -30,7 +30,7 @@ serde_json = "1.0"
 
 [dev-dependencies]
 tokio = { version = "1.0", features = ["macros", "rt"] }
-opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }
+ts_opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }
 rand = "0.8"
 hyper = { version = "0.14", features = ["full"] }
 

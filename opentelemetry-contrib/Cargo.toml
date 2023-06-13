@@ -22,10 +22,10 @@ rustdoc-args = ["--cfg", "docsrs"]
 default = []
 base64_format = ["base64", "binary_propagator"]
 binary_propagator = []
-jaeger_json_exporter = ["serde_json", "futures", "async-trait", "opentelemetry-semantic-conventions"]
-rt-tokio = ["tokio", "opentelemetry/rt-tokio"]
-rt-tokio-current-thread = ["tokio", "opentelemetry/rt-tokio-current-thread"]
-rt-async-std = ["async-std", "opentelemetry/rt-async-std"]
+jaeger_json_exporter = ["serde_json", "futures", "async-trait", "ts_opentelemetry_semantic_conventions"]
+rt-tokio = ["tokio", "ts_opentelemetry/rt-tokio"]
+rt-tokio-current-thread = ["tokio", "ts_opentelemetry/rt-tokio-current-thread"]
+rt-async-std = ["async-std", "ts_opentelemetry/rt-async-std"]
 
 [dependencies]
 async-std = { version = "1.10", optional = true }
@@ -33,12 +33,12 @@ async-trait = { version = "0.1", optional = true }
 base64 = { version = "0.13", optional = true }
 futures = { version = "0.3", optional = true }
 once_cell = "1.17.1"
-opentelemetry = { version = "0.19", path = "../opentelemetry", features = ["trace"] }
-opentelemetry_api = { version = "0.19", path = "../opentelemetry-api" }
-opentelemetry-semantic-conventions = { version = "0.11", path = "../opentelemetry-semantic-conventions", optional = true }
+ts_opentelemetry = { version = "0.20.0-beta.1", path = "../opentelemetry", features = ["trace"] }
+ts_opentelemetry_api = { version = "0.20.0-beta.1", path = "../opentelemetry-api" }
+ts_opentelemetry_semantic_conventions = { version = "0.12.0-beta.1", path = "../opentelemetry-semantic-conventions", optional = true }
 serde_json = { version = "1", optional = true }
 tokio = { version = "1.0", features = ["fs", "io-util"], optional = true }
 
 [dev-dependencies]
 base64 = "0.13"
-opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }
+ts_opentelemetry = { path = "../opentelemetry", features = ["trace", "testing"] }

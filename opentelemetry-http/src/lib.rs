@@ -5,7 +5,7 @@ use std::fmt::Debug;
 pub use bytes::Bytes;
 #[doc(no_inline)]
 pub use http::{Request, Response};
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     propagation::{Extractor, Injector},
     trace::TraceError,
 };

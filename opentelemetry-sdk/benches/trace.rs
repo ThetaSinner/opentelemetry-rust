@@ -1,10 +1,10 @@
 use criterion::{criterion_group, criterion_main, Criterion};
 use futures_util::future::BoxFuture;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     trace::{Span, Tracer, TracerProvider},
     Key, KeyValue,
 };
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     export::trace::{ExportResult, SpanData, SpanExporter},
     trace as sdktrace,
 };

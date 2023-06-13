@@ -1,13 +1,13 @@
 //! run with `$ cargo run --example basic --all-features
 
 #[cfg(all(feature = "metrics", feature = "trace"))]
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::MeterProvider as _,
     trace::{Span, Tracer, TracerProvider as _},
     Context, KeyValue,
 };
 #[cfg(all(feature = "metrics", feature = "trace"))]
-use opentelemetry_sdk::{
+use ts_opentelemetry_sdk::{
     metrics::{MeterProvider, PeriodicReader},
     runtime,
     trace::TracerProvider,
@@ -15,7 +15,7 @@ use opentelemetry_sdk::{
 
 #[cfg(all(feature = "metrics", feature = "trace"))]
 fn init_trace() -> TracerProvider {
-    let exporter = opentelemetry_stdout::SpanExporter::default();
+    let exporter = ts_opentelemetry_stdout::SpanExporter::default();
     TracerProvider::builder()
         .with_simple_exporter(exporter)
         .build()
@@ -23,7 +23,7 @@ fn init_trace() -> TracerProvider {
 
 #[cfg(all(feature = "metrics", feature = "trace"))]
 fn init_metrics() -> MeterProvider {
-    let exporter = opentelemetry_stdout::MetricsExporter::default();
+    let exporter = ts_opentelemetry_stdout::MetricsExporter::default();
     let reader = PeriodicReader::builder(exporter, runtime::Tokio).build();
     MeterProvider::builder().with_reader(reader).build()
 }

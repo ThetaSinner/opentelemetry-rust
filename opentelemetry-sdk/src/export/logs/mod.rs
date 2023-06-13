@@ -1,7 +1,7 @@
 //! Log exporters
 use crate::Resource;
 use async_trait::async_trait;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     logs::{LogError, LogRecord, LogResult},
     InstrumentationLibrary,
 };

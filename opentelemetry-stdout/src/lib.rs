@@ -5,13 +5,13 @@
 //! ```no_run
 //! # #[cfg(all(feature = "metrics", feature = "trace"))]
 //! {
-//! use opentelemetry_api::metrics::MeterProvider as _;
-//! use opentelemetry_api::trace::{Span, Tracer, TracerProvider as _};
-//! use opentelemetry_api::{Context, KeyValue};
+//! use ts_opentelemetry_api::metrics::MeterProvider as _;
+//! use ts_opentelemetry_api::trace::{Span, Tracer, TracerProvider as _};
+//! use ts_opentelemetry_api::{Context, KeyValue};
 //!
-//! use opentelemetry_sdk::metrics::{MeterProvider, PeriodicReader};
-//! use opentelemetry_sdk::runtime;
-//! use opentelemetry_sdk::trace::TracerProvider;
+//! use ts_opentelemetry_sdk::metrics::{MeterProvider, PeriodicReader};
+//! use ts_opentelemetry_sdk::runtime;
+//! use ts_opentelemetry_sdk::trace::TracerProvider;
 //!
 //! fn init_trace() -> TracerProvider {
 //!     let exporter = opentelemetry_stdout::SpanExporter::default();

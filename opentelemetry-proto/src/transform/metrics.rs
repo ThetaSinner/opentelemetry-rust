@@ -7,9 +7,9 @@
 pub mod tonic {
     use crate::proto::tonic::{common::v1::KeyValue, metrics::v1::AggregationTemporality};
     use crate::tonic::metrics::v1::{exemplar, number_data_point};
-    use opentelemetry_api::metrics::MetricsError;
-    use opentelemetry_api::{Key, Value};
-    use opentelemetry_sdk::metrics::data::Temporality;
+    use ts_opentelemetry_api::metrics::MetricsError;
+    use ts_opentelemetry_api::{Key, Value};
+    use ts_opentelemetry_sdk::metrics::data::Temporality;
 
     impl From<u64> for exemplar::Value {
         fn from(value: u64) -> Self {
@@ -56,8 +56,8 @@ pub mod tonic {
         }
     }
 
-    impl From<&opentelemetry_api::KeyValue> for KeyValue {
-        fn from(kv: &opentelemetry_api::KeyValue) -> Self {
+    impl From<&ts_opentelemetry_api::KeyValue> for KeyValue {
+        fn from(kv: &ts_opentelemetry_api::KeyValue) -> Self {
             KeyValue {
                 key: kv.key.to_string(),
                 value: Some(kv.value.clone().into()),
@@ -71,7 +71,7 @@ pub mod tonic {
                 Temporality::Cumulative => AggregationTemporality::Cumulative,
                 Temporality::Delta => AggregationTemporality::Delta,
                 other => {
-                    opentelemetry_api::global::handle_error(MetricsError::Other(format!(
+                    ts_opentelemetry_api::global::handle_error(MetricsError::Other(format!(
                         "Unknown temporality {:?}, using default instead.",
                         other
                     )));

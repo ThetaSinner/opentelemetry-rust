@@ -14,7 +14,7 @@
 //! ## Usage
 //!
 //! ```
-//! use opentelemetry::sdk;
+//! use ts_opentelemetry::sdk;
 //! use opentelemetry_semantic_conventions as semconv;
 //!
 //! let _tracer = sdk::trace::TracerProvider::builder()
@@ -25,7 +25,7 @@
 //!     .build();
 //! ```
 
-use opentelemetry::Key;
+use ts_opentelemetry::Key;
 
 /// Array of brand name and version separated by a space.
 ///

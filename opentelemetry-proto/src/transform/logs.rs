@@ -11,7 +11,7 @@ pub mod tonic {
         },
         transform::common::tonic::resource_attributes,
     };
-    use opentelemetry_api::logs::{AnyValue as LogsAnyValue, Severity};
+    use ts_opentelemetry_api::logs::{AnyValue as LogsAnyValue, Severity};
 
     use super::*;
 
@@ -54,8 +54,8 @@ pub mod tonic {
         }
     }
 
-    impl From<opentelemetry_api::logs::LogRecord> for LogRecord {
-        fn from(log_record: opentelemetry_api::logs::LogRecord) -> Self {
+    impl From<ts_opentelemetry_api::logs::LogRecord> for LogRecord {
+        fn from(log_record: ts_opentelemetry_api::logs::LogRecord) -> Self {
             let trace_context = log_record.trace_context.as_ref();
             let severity_number = match log_record.severity_number {
                 Some(Severity::Trace) => SeverityNumber::Trace,
@@ -117,8 +117,8 @@ pub mod tonic {
         }
     }
 
-    impl From<opentelemetry_sdk::export::logs::LogData> for ResourceLogs {
-        fn from(log_data: opentelemetry_sdk::export::logs::LogData) -> Self {
+    impl From<ts_opentelemetry_sdk::export::logs::LogData> for ResourceLogs {
+        fn from(log_data: ts_opentelemetry_sdk::export::logs::LogData) -> Self {
             ResourceLogs {
                 resource: Some(Resource {
                     attributes: resource_attributes(&log_data.resource).0,
@@ -151,7 +151,7 @@ pub mod grpcio {
         },
         transform::common::grpcio::resource_attributes,
     };
-    use opentelemetry_api::logs::{AnyValue as LogsAnyValue, Severity};
+    use ts_opentelemetry_api::logs::{AnyValue as LogsAnyValue, Severity};
     use protobuf::{RepeatedField, SingularPtrField};
 
     use super::*;
@@ -203,8 +203,8 @@ pub mod grpcio {
         }
     }
 
-    impl From<opentelemetry_api::logs::LogRecord> for LogRecord {
-        fn from(log_record: opentelemetry_api::logs::LogRecord) -> Self {
+    impl From<ts_opentelemetry_api::logs::LogRecord> for LogRecord {
+        fn from(log_record: ts_opentelemetry_api::logs::LogRecord) -> Self {
             let trace_context = log_record.trace_context.as_ref();
             let severity_number = match log_record.severity_number {
                 Some(Severity::Trace) => SeverityNumber::SEVERITY_NUMBER_TRACE,
@@ -263,8 +263,8 @@ pub mod grpcio {
         }
     }
 
-    impl From<opentelemetry_sdk::export::logs::LogData> for ResourceLogs {
-        fn from(log_data: opentelemetry_sdk::export::logs::LogData) -> Self {
+    impl From<ts_opentelemetry_sdk::export::logs::LogData> for ResourceLogs {
+        fn from(log_data: ts_opentelemetry_sdk::export::logs::LogData) -> Self {
             ResourceLogs {
                 resource: SingularPtrField::some(Resource {
                     attributes: resource_attributes(&log_data.resource).0,

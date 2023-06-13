@@ -2,8 +2,8 @@ use core::fmt;
 use std::sync::{Arc, Mutex};
 
 use once_cell::sync::OnceCell;
-use opentelemetry_api::metrics::{MetricsError, Result};
-use opentelemetry_sdk::metrics::{reader::AggregationSelector, ManualReaderBuilder};
+use ts_opentelemetry_api::metrics::{MetricsError, Result};
+use ts_opentelemetry_sdk::metrics::{reader::AggregationSelector, ManualReaderBuilder};
 
 use crate::{Collector, PrometheusExporter};
 
@@ -49,7 +49,7 @@ impl ExporterBuilder {
     /// If not specified, the exporter will create a `target_info` metric containing
     /// the metrics' [Resource] attributes.
     ///
-    /// [Resource]: opentelemetry_sdk::Resource
+    /// [Resource]: ts_opentelemetry_sdk::Resource
     pub fn without_target_info(mut self) -> Self {
         self.disable_target_info = true;
         self
@@ -94,7 +94,7 @@ impl ExporterBuilder {
     ///
     /// If no selector is provided, the [DefaultAggregationSelector] is used.
     ///
-    /// [DefaultAggregationSelector]: opentelemetry_sdk::metrics::reader::DefaultAggregationSelector
+    /// [DefaultAggregationSelector]: ts_opentelemetry_sdk::metrics::reader::DefaultAggregationSelector
     pub fn with_aggregation_selector(mut self, agg: impl AggregationSelector + 'static) -> Self {
         self.aggregation = Some(Box::new(agg));
         self

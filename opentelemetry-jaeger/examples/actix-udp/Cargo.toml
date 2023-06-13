@@ -5,8 +5,8 @@ edition = "2021"
 publish = false
 
 [dependencies]
-opentelemetry = { path = "../../../opentelemetry" }
-opentelemetry-jaeger = { path = "../.." }
+ts_opentelemetry = { path = "../../../opentelemetry" }
+ts_opentelemetry_jaeger = { path = "../.." }
 actix-web = "4.1"
 actix-service = "2"
 env_logger = "0.9"

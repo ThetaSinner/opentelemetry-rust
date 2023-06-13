@@ -1,7 +1,7 @@
 use std::{borrow::Cow, collections::HashMap, time::SystemTime};
 
 use crate::common::{as_unix_nano, KeyValue, Resource, Scope, Value};
-use opentelemetry_sdk::AttributeSet;
+use ts_opentelemetry_sdk::AttributeSet;
 use serde::{Serialize, Serializer};
 
 /// Transformed logs data that can be serialized.
@@ -12,8 +12,8 @@ pub struct LogData {
     resource_logs: Vec<ResourceLogs>,
 }
 
-impl From<Vec<opentelemetry_sdk::export::logs::LogData>> for LogData {
-    fn from(sdk_logs: Vec<opentelemetry_sdk::export::logs::LogData>) -> LogData {
+impl From<Vec<ts_opentelemetry_sdk::export::logs::LogData>> for LogData {
+    fn from(sdk_logs: Vec<ts_opentelemetry_sdk::export::logs::LogData>) -> LogData {
         let mut resource_logs = HashMap::<AttributeSet, ResourceLogs>::new();
 
         for sdk_log in sdk_logs {
@@ -94,8 +94,8 @@ struct LogRecord {
     trace_id: Option<String>,
 }
 
-impl From<opentelemetry_sdk::export::logs::LogData> for LogRecord {
-    fn from(value: opentelemetry_sdk::export::logs::LogData) -> Self {
+impl From<ts_opentelemetry_sdk::export::logs::LogData> for LogRecord {
+    fn from(value: ts_opentelemetry_sdk::export::logs::LogData) -> Self {
         LogRecord {
             trace_id: value
                 .record

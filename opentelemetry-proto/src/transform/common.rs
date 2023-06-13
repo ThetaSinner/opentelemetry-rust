@@ -13,15 +13,15 @@ pub mod tonic {
     use crate::proto::tonic::common::v1::{
         any_value, AnyValue, ArrayValue, InstrumentationScope, KeyValue,
     };
-    use opentelemetry_api::{Array, Value};
-    use opentelemetry_sdk::trace::EvictedHashMap;
+    use ts_opentelemetry_api::{Array, Value};
+    use ts_opentelemetry_sdk::trace::EvictedHashMap;
     use std::borrow::Cow;
 
     #[cfg(any(feature = "traces", feature = "logs"))]
-    use opentelemetry_sdk::Resource;
+    use ts_opentelemetry_sdk::Resource;
 
-    impl From<opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
-        fn from(library: opentelemetry_sdk::InstrumentationLibrary) -> Self {
+    impl From<ts_opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
+        fn from(library: ts_opentelemetry_sdk::InstrumentationLibrary) -> Self {
             InstrumentationScope {
                 name: library.name.into_owned(),
                 attributes: Vec::new(),
@@ -31,8 +31,8 @@ pub mod tonic {
         }
     }
 
-    impl From<&opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
-        fn from(library: &opentelemetry_sdk::InstrumentationLibrary) -> Self {
+    impl From<&ts_opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
+        fn from(library: &ts_opentelemetry_sdk::InstrumentationLibrary) -> Self {
             InstrumentationScope {
                 name: library.name.to_string(),
                 attributes: Vec::new(),
@@ -64,8 +64,8 @@ pub mod tonic {
         }
     }
 
-    impl From<Vec<opentelemetry_api::KeyValue>> for Attributes {
-        fn from(kvs: Vec<opentelemetry_api::KeyValue>) -> Self {
+    impl From<Vec<ts_opentelemetry_api::KeyValue>> for Attributes {
+        fn from(kvs: Vec<ts_opentelemetry_api::KeyValue>) -> Self {
             Attributes(
                 kvs.into_iter()
                     .map(|api_kv| KeyValue {
@@ -126,7 +126,7 @@ pub mod tonic {
     pub(crate) fn resource_attributes(resource: &Resource) -> Attributes {
         resource
             .iter()
-            .map(|(k, v)| opentelemetry_api::KeyValue::new(k.clone(), v.clone()))
+            .map(|(k, v)| ts_opentelemetry_api::KeyValue::new(k.clone(), v.clone()))
             .collect::<Vec<_>>()
             .into()
     }
@@ -135,15 +135,15 @@ pub mod tonic {
 #[cfg(feature = "gen-protoc")]
 pub mod grpcio {
     use crate::proto::grpcio::common::{AnyValue, ArrayValue, InstrumentationScope, KeyValue};
-    use opentelemetry_api::{Array, Value};
-    use opentelemetry_sdk::{trace::EvictedHashMap, Resource};
+    use ts_opentelemetry_api::{Array, Value};
+    use ts_opentelemetry_sdk::{trace::EvictedHashMap, Resource};
     use protobuf::RepeatedField;
     #[cfg(feature = "logs")]
     use protobuf::SingularPtrField;
     use std::borrow::Cow;
 
-    impl From<opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
-        fn from(library: opentelemetry_sdk::InstrumentationLibrary) -> Self {
+    impl From<ts_opentelemetry_sdk::InstrumentationLibrary> for InstrumentationScope {
+        fn from(library: ts_opentelemetry_sdk::InstrumentationLibrary) -> Self {
             InstrumentationScope {
                 name: library.name.to_string(),
                 version: library.version.unwrap_or(Cow::Borrowed("")).to_string(),
@@ -171,8 +171,8 @@ pub mod grpcio {
         }
     }
 
-    impl From<Vec<opentelemetry_api::KeyValue>> for Attributes {
-        fn from(kvs: Vec<opentelemetry_api::KeyValue>) -> Self {
+    impl From<Vec<ts_opentelemetry_api::KeyValue>> for Attributes {
+        fn from(kvs: Vec<ts_opentelemetry_api::KeyValue>) -> Self {
             Attributes(RepeatedField::from_vec(
                 kvs.into_iter()
                     .map(|api_kv| {
@@ -240,7 +240,7 @@ pub mod grpcio {
     pub(crate) fn resource_attributes(resource: &Resource) -> Attributes {
         resource
             .iter()
-            .map(|(k, v)| opentelemetry_api::KeyValue::new(k.clone(), v.clone()))
+            .map(|(k, v)| ts_opentelemetry_api::KeyValue::new(k.clone(), v.clone()))
             .collect::<Vec<_>>()
             .into()
     }

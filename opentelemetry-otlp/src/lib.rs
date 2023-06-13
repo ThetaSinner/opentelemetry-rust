@@ -28,7 +28,7 @@
 //! `new_pipeline().metrics()` respectively.
 //!
 //! ```no_run
-//! use opentelemetry::trace::Tracer;
+//! use ts_opentelemetry::trace::Tracer;
 //!
 //! fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
 //!     // First, create a OTLP exporter builder. Configure it as you need.
@@ -62,11 +62,11 @@
 //! ```
 //!
 //! ```no_run
-//! # fn main() -> Result<(), opentelemetry::trace::TraceError> {
+//! # fn main() -> Result<(), ts_opentelemetry::trace::TraceError> {
 //! let tracer = opentelemetry_otlp::new_pipeline()
 //!     .tracing()
 //!     .with_exporter(opentelemetry_otlp::new_exporter().tonic())
-//!     .install_batch(opentelemetry::runtime::AsyncStd)?;
+//!     .install_batch(ts_opentelemetry::runtime::AsyncStd)?;
 //! # Ok(())
 //! # }
 //! ```
@@ -85,10 +85,10 @@
 //! on the choice of exporters.
 //!
 //! ```no_run
-//! use opentelemetry_api::{KeyValue, trace::Tracer};
-//! use opentelemetry_sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
-//! use opentelemetry_sdk::metrics::{selectors, PushController};
-//! use opentelemetry_sdk::util::tokio_interval_stream;
+//! use ts_opentelemetry_api::{KeyValue, trace::Tracer};
+//! use ts_opentelemetry_sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
+//! use ts_opentelemetry_sdk::metrics::{selectors, PushController};
+//! use ts_opentelemetry_sdk::util::tokio_interval_stream;
 //! use opentelemetry_otlp::{Protocol, WithExportConfig, ExportConfig};
 //! use std::time::Duration;
 //! use tonic::metadata::*;
@@ -118,7 +118,7 @@
 //!                 .with_max_events_per_span(16)
 //!                 .with_resource(Resource::new(vec![KeyValue::new("service.name", "example")])),
 //!         )
-//!         .install_batch(opentelemetry::runtime::Tokio)?;
+//!         .install_batch(ts_opentelemetry::runtime::Tokio)?;
 //!
 //!     let export_config = ExportConfig {
 //!         endpoint: "http://localhost:4317".to_string(),
@@ -212,7 +212,7 @@ pub use crate::exporter::{
     OTEL_EXPORTER_OTLP_TIMEOUT_DEFAULT,
 };
 
-use opentelemetry_sdk::export::ExportError;
+use ts_opentelemetry_sdk::export::ExportError;
 #[cfg(feature = "metrics")]
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 

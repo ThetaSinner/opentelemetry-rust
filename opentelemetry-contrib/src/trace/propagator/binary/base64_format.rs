@@ -10,7 +10,7 @@
 use crate::trace::propagator::binary::binary_propagator::BinaryFormat;
 
 use base64::{decode, encode};
-use opentelemetry::trace::SpanContext;
+use ts_opentelemetry::trace::SpanContext;
 
 /// Used to serialize and deserialize `SpanContext`s to and from a base64
 /// representation.
@@ -43,7 +43,7 @@ where
 mod tests {
     use super::*;
     use crate::trace::propagator::binary::binary_propagator::BinaryPropagator;
-    use opentelemetry::trace::{SpanId, TraceFlags, TraceId, TraceState};
+    use ts_opentelemetry::trace::{SpanId, TraceFlags, TraceId, TraceState};
 
     #[rustfmt::skip]
     fn to_base64_data() -> Vec<(SpanContext, String)> {

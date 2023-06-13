@@ -1,7 +1,7 @@
 #[cfg(feature = "gen-protoc")]
 mod grpcio {
-    use opentelemetry_api::trace::{self, Event};
-    use opentelemetry_sdk::export::trace::SpanData;
+    use ts_opentelemetry_api::trace::{self, Event};
+    use ts_opentelemetry_sdk::export::trace::SpanData;
 
     use crate::transform::common::{grpcio::Attributes, to_nanos};
     use crate::{

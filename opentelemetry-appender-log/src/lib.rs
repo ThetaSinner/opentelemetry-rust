@@ -1,5 +1,5 @@
 use log::{Level, Metadata, Record};
-use opentelemetry_api::logs::{AnyValue, LogRecordBuilder, Logger, LoggerProvider, Severity};
+use ts_opentelemetry_api::logs::{AnyValue, LogRecordBuilder, Logger, LoggerProvider, Severity};
 
 pub struct OpenTelemetryLogBridge<P, L>
 where

@@ -1,6 +1,6 @@
-use opentelemetry::global;
-use opentelemetry::global::shutdown_tracer_provider;
-use opentelemetry::{
+use ts_opentelemetry::global;
+use ts_opentelemetry::global::shutdown_tracer_provider;
+use ts_opentelemetry::{
     trace::{Span, TraceContextExt, Tracer},
     Key,
 };

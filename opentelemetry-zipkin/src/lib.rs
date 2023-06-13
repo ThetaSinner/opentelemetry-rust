@@ -21,8 +21,8 @@
 //! telemetry:
 //!
 //! ```no_run
-//! use opentelemetry::trace::{Tracer, TraceError};
-//! use opentelemetry::global;
+//! use ts_opentelemetry::trace::{Tracer, TraceError};
+//! use ts_opentelemetry::global;
 //!
 //! fn main() -> Result<(), TraceError> {
 //!     global::set_text_map_propagator(opentelemetry_zipkin::Propagator::new());
@@ -53,9 +53,9 @@
 //! ```
 //!
 //! ```no_run
-//! # fn main() -> Result<(), opentelemetry::trace::TraceError> {
+//! # fn main() -> Result<(), ts_opentelemetry::trace::TraceError> {
 //! let tracer = opentelemetry_zipkin::new_pipeline()
-//!     .install_batch(opentelemetry::runtime::Tokio)?;
+//!     .install_batch(ts_opentelemetry::runtime::Tokio)?;
 //! # Ok(())
 //! # }
 //! ```
@@ -87,11 +87,11 @@
 //!
 //!
 //! ```no_run
-//! use opentelemetry::{KeyValue, trace::Tracer};
-//! use opentelemetry::sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
-//! use opentelemetry::sdk::export::trace::ExportResult;
-//! use opentelemetry::global;
-//! use opentelemetry_http::{HttpClient, HttpError};
+//! use ts_opentelemetry::{KeyValue, trace::Tracer};
+//! use ts_opentelemetry::sdk::{trace::{self, RandomIdGenerator, Sampler}, Resource};
+//! use ts_opentelemetry::sdk::export::trace::ExportResult;
+//! use ts_opentelemetry::global;
+//! use ts_opentelemetry_http::{HttpClient, HttpError};
 //! use async_trait::async_trait;
 //! use bytes::Bytes;
 //! use futures_util::io::AsyncReadExt as _;
@@ -143,7 +143,7 @@
 //!                 .with_max_events_per_span(16)
 //!                 .with_resource(Resource::new(vec![KeyValue::new("key", "value")])),
 //!         )
-//!         .install_batch(opentelemetry::runtime::Tokio)?;
+//!         .install_batch(ts_opentelemetry::runtime::Tokio)?;
 //!
 //!     tracer.in_span("doing_work", |cx| {
 //!         // Traced app logic here...

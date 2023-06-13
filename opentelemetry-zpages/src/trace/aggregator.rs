@@ -9,12 +9,12 @@ use async_channel::Receiver;
 
 use futures_util::StreamExt as _;
 
-use opentelemetry::trace::Status;
+use ts_opentelemetry::trace::Status;
 
 use crate::trace::{TracezError, TracezMessage, TracezQuery, TracezResponse};
 use crate::SpanQueue;
-use opentelemetry::sdk::export::trace::SpanData;
-use opentelemetry_proto::grpcio::tracez::TracezCounts;
+use ts_opentelemetry::sdk::export::trace::SpanData;
+use ts_opentelemetry_proto::grpcio::tracez::TracezCounts;
 
 const LATENCY_BUCKET: [Duration; 9] = [
     Duration::from_micros(0),
@@ -199,13 +199,13 @@ impl<T: From<SpanData>> From<SpanQueue> for Vec<T> {
 mod tests {
     use std::time::{Duration, SystemTime};
 
-    use opentelemetry::trace::{SpanContext, SpanId, Status, TraceFlags, TraceId, TraceState};
+    use ts_opentelemetry::trace::{SpanContext, SpanId, Status, TraceFlags, TraceId, TraceState};
 
     use crate::trace::aggregator::{SpanAggregator, LATENCY_BUCKET_COUNT};
     use crate::trace::span_queue::SpanQueue;
     use crate::trace::TracezMessage;
-    use opentelemetry::sdk::export::trace::SpanData;
-    use opentelemetry::testing::trace::new_test_export_span_data;
+    use ts_opentelemetry::sdk::export::trace::SpanData;
+    use ts_opentelemetry::testing::trace::new_test_export_span_data;
     use std::borrow::Cow;
     use std::cmp::min;
 

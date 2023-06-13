@@ -1,9 +1,9 @@
 use lazy_static::lazy_static;
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     metrics::{Counter, MeterProvider as _},
     Context,
 };
-use opentelemetry_sdk::metrics::{ManualReader, MeterProvider};
+use ts_opentelemetry_sdk::metrics::{ManualReader, MeterProvider};
 use std::borrow::Cow;
 
 mod throughput;

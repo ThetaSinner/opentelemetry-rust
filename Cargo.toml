@@ -5,7 +5,7 @@ members = [
     "opentelemetry-aws",
     "opentelemetry-contrib",
     "opentelemetry-datadog",
-    "opentelemetry-dynatrace",
+    # "opentelemetry-dynatrace",
     "opentelemetry-http",
     "opentelemetry-jaeger",
     "opentelemetry-jaeger/examples/actix-udp",

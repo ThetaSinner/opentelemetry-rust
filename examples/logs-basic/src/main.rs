@@ -1,12 +1,12 @@
 use log::{error, Level};
-use opentelemetry_api::KeyValue;
+use ts_opentelemetry_api::KeyValue;
 use opentelemetry_appender_log::OpenTelemetryLogBridge;
-use opentelemetry_sdk::logs::{Config, LoggerProvider};
-use opentelemetry_sdk::Resource;
+use ts_opentelemetry_sdk::logs::{Config, LoggerProvider};
+use ts_opentelemetry_sdk::Resource;
 
 fn main() {
     // Setup LoggerProvider with a stdout exporter
-    let exporter = opentelemetry_stdout::LogExporter::default();
+    let exporter = ts_opentelemetry_stdout::LogExporter::default();
     let logger_provider = LoggerProvider::builder()
         .with_config(
             Config::default().with_resource(Resource::new(vec![KeyValue::new(

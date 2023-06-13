@@ -3,7 +3,7 @@ use std::{
     sync::{Mutex, Weak},
 };
 
-use opentelemetry_api::{
+use ts_opentelemetry_api::{
     global,
     metrics::{MetricsError, Result},
     Context,
@@ -26,7 +26,7 @@ use super::{
 /// # Example
 ///
 /// ```
-/// use opentelemetry_sdk::metrics::ManualReader;
+/// use ts_opentelemetry_sdk::metrics::ManualReader;
 ///
 /// // can specify additional reader configuration
 /// let reader = ManualReader::builder().build();

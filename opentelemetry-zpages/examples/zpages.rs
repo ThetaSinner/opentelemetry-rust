@@ -1,9 +1,9 @@
 use hyper::http::{Request, Response};
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{Body, Server};
-use opentelemetry::trace::{Span, Status};
-use opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
-use opentelemetry_zpages::{tracez, TracezError, TracezQuerier, TracezResponse};
+use ts_opentelemetry::trace::{Span, Status};
+use ts_opentelemetry::{global, runtime::Tokio, sdk::trace, trace::Tracer};
+use ts_opentelemetry_zpages::{tracez, TracezError, TracezQuerier, TracezResponse};
 use rand::Rng;
 use std::str::FromStr;
 use std::sync::Arc;

@@ -23,7 +23,7 @@ use std::{
 
 use async_trait::async_trait;
 use futures::{future::BoxFuture, stream::StreamExt};
-use opentelemetry::{
+use ts_opentelemetry::{
     global::handle_error,
     sdk::{
         export::{
@@ -35,8 +35,8 @@ use opentelemetry::{
     trace::TraceError,
     Key, Value,
 };
-use opentelemetry_semantic_conventions::resource::SERVICE_NAME;
-use opentelemetry_semantic_conventions::trace::{
+use ts_opentelemetry_semantic_conventions::resource::SERVICE_NAME;
+use ts_opentelemetry_semantic_conventions::trace::{
     HTTP_METHOD, HTTP_ROUTE, HTTP_STATUS_CODE, HTTP_TARGET, HTTP_URL,
 };
 use thiserror::Error;
@@ -747,8 +747,8 @@ const GCP_SERVICE_NAME: &str = "g.co/gae/app/module";
 mod tests {
     use super::*;
 
-    use opentelemetry::{sdk::trace::EvictedHashMap, KeyValue, Value};
-    use opentelemetry_semantic_conventions as semcov;
+    use ts_opentelemetry::{sdk::trace::EvictedHashMap, KeyValue, Value};
+    use ts_opentelemetry_semantic_conventions as semcov;
 
     #[test]
     fn test_attributes_mapping() {

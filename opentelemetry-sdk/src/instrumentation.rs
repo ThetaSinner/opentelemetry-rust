@@ -1,4 +1,4 @@
-pub use opentelemetry_api::InstrumentationLibrary;
+pub use ts_opentelemetry_api::InstrumentationLibrary;
 
 /// A logical unit of the application code with which the emitted telemetry can
 /// be associated.
