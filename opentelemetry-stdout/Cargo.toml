@@ -1,9 +1,9 @@
 [package]
-name = "opentelemetry-stdout"
-version = "0.1.0"
-description = "An OpenTelemetry exporter for stdout"
-homepage = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-stdout"
-repository = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-stdout"
+name = "ts_opentelemetry_stdout"
+version = "0.1.0-beta.1"
+description = "A fork of an OpenTelemetry exporter for stdout"
+homepage = "https://github.com/ThetaSinner/opentelemetry-rust"
+repository = "https://github.com/ThetaSinner/opentelemetry-rust"
 readme = "README.md"
 categories = [
     "development-tools::debugging",
@@ -24,13 +24,13 @@ logs = ["opentelemetry_api/logs", "opentelemetry_sdk/logs", "async-trait", "this
 async-trait = { version = "0.1", optional = true }
 thiserror = { version = "1", optional = true }
 futures-util = { version = "0.3", optional = true, default-features = false }
-opentelemetry_api = { version = "0.19", path = "../opentelemetry-api", default_features = false }
-opentelemetry_sdk = { version = "0.19", path = "../opentelemetry-sdk", default_features = false }
+ts_opentelemetry_api = { version = "0.20", path = "../opentelemetry-api", default_features = false }
+ts_opentelemetry_sdk = { version = "0.20", path = "../opentelemetry-sdk", default_features = false }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 ordered-float = "3.4.0"
 
 [dev-dependencies]
-opentelemetry_api = { version = "0.19", path = "../opentelemetry-api", features = ["metrics"] }
-opentelemetry_sdk = { version = "0.19", path = "../opentelemetry-sdk", features = ["rt-tokio", "metrics"] }
+ts_opentelemetry_api = { version = "0.20", path = "../opentelemetry-api", features = ["metrics"] }
+ts_opentelemetry_sdk = { version = "0.20", path = "../opentelemetry-sdk", features = ["rt-tokio", "metrics"] }
 tokio = { version = "1.27", features = ["full"] }

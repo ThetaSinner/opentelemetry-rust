@@ -1,9 +1,9 @@
 [package]
-name = "opentelemetry"
-version = "0.19.0"
-description = "A metrics collection and distributed tracing framework"
-homepage = "https://github.com/open-telemetry/opentelemetry-rust"
-repository = "https://github.com/open-telemetry/opentelemetry-rust"
+name = "ts_opentelemetry"
+version = "0.20.0-beta.1"
+description = "A fork of a metrics collection and distributed tracing framework"
+homepage = "https://github.com/ThetaSinner/opentelemetry-rust"
+repository = "https://github.com/ThetaSinner/opentelemetry-rust"
 readme = "README.md"
 categories = [
     "development-tools::debugging",
@@ -21,11 +21,11 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-opentelemetry_api = { version = "0.19", path = "../opentelemetry-api" }
-opentelemetry_sdk = { version = "0.19", path = "../opentelemetry-sdk" }
+ts_opentelemetry_api = { version = "0.20", path = "../opentelemetry-api" }
+ts_opentelemetry_sdk = { version = "0.20", path = "../opentelemetry-sdk" }
 
 [dev-dependencies]
-opentelemetry-stdout = { path = "../opentelemetry-stdout" }
+ts_opentelemetry_stdout = { path = "../opentelemetry-stdout" }
 
 [features]
 default = ["trace"]

@@ -6,11 +6,9 @@
 
 Semantic conventions for applications instrumented with [`OpenTelemetry`].
 
-[![Crates.io: opentelemetry-semantic-conventions](https://img.shields.io/crates/v/opentelemetry-semantic-conventions.svg)](https://crates.io/crates/opentelemetry-semantic-conventions)
-[![Documentation](https://docs.rs/opentelemetry-semantic-conventions/badge.svg)](https://docs.rs/opentelemetry-semantic-conventions)
+[![Crates.io: opentelemetry-semantic-conventions](https://img.shields.io/crates/v/opentelemetry-semantic-conventions.svg)](https://crates.io/crates/ts_opentelemetry_semantic_conventions)
+[![Documentation](https://docs.rs/opentelemetry-semantic-conventions/badge.svg)](https://docs.rs/ts_opentelemetry_semantic_conventions)
 [![LICENSE](https://img.shields.io/crates/l/opentelemetry-semantic-conventions)](./LICENSE)
-[![GitHub Actions CI](https://github.com/open-telemetry/opentelemetry-rust/workflows/CI/badge.svg)](https://github.com/open-telemetry/opentelemetry-rust/actions?query=workflow%3ACI+branch%3Amain)
-[![Slack](https://img.shields.io/badge/slack-@cncf/otel/rust-brightgreen.svg?logo=slack)](https://cloud-native.slack.com/archives/C03GDP0H023)
 
 ## Overview
 
