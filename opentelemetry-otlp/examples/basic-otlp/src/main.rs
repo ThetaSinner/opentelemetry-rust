@@ -7,15 +7,15 @@ use ts_opentelemetry_api::{
     trace::{TraceContextExt, Tracer},
     Context, Key, KeyValue,
 };
-use opentelemetry_otlp::{ExportConfig, WithExportConfig};
+use ts_opentelemetry_otlp::{ExportConfig, WithExportConfig};
 use ts_opentelemetry_sdk::{metrics::MeterProvider, runtime, trace as sdktrace, Resource};
 use std::error::Error;
 
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
-    opentelemetry_otlp::new_pipeline()
+    ts_opentelemetry_otlp::new_pipeline()
         .tracing()
         .with_exporter(
-            opentelemetry_otlp::new_exporter()
+            ts_opentelemetry_otlp::new_exporter()
                 .tonic()
                 .with_endpoint("http://localhost:4317"),
         )
@@ -33,10 +33,10 @@ fn init_metrics() -> metrics::Result<MeterProvider> {
         endpoint: "http://localhost:4317".to_string(),
         ..ExportConfig::default()
     };
-    opentelemetry_otlp::new_pipeline()
+    ts_opentelemetry_otlp::new_pipeline()
         .metrics(runtime::Tokio)
         .with_exporter(
-            opentelemetry_otlp::new_exporter()
+            ts_opentelemetry_otlp::new_exporter()
                 .tonic()
                 .with_export_config(export_config),
         )

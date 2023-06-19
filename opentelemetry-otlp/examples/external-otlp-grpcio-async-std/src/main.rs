@@ -14,7 +14,7 @@ use ts_opentelemetry::{
     trace::{TraceContextExt, Tracer},
     Key,
 };
-use opentelemetry_otlp::WithExportConfig;
+use ts_opentelemetry_otlp::WithExportConfig;
 use url::Url;
 
 use std::{
@@ -56,10 +56,10 @@ fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
         endpoint.port_or_known_default().unwrap()
     );
 
-    opentelemetry_otlp::new_pipeline()
+    ts_opentelemetry_otlp::new_pipeline()
         .tracing()
         .with_exporter(
-            opentelemetry_otlp::new_exporter()
+            ts_opentelemetry_otlp::new_exporter()
                 .grpcio()
                 .with_endpoint(grpcio_endpoint)
                 .with_headers(headers)

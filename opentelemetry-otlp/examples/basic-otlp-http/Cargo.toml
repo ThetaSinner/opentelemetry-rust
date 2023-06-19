@@ -8,5 +8,5 @@ publish = false
 once_cell = "1.17"
 ts_opentelemetry_api = { path = "../../../opentelemetry-api" }
 ts_opentelemetry_sdk = { path = "../../../opentelemetry-sdk", features = ["rt-tokio", "metrics"] }
-opentelemetry-otlp = { path = "../..", features = ["http-proto", "reqwest-client"] }
+ts_opentelemetry_otlp = { path = "../..", features = ["http-proto", "reqwest-client"] }
 tokio = { version = "1.0", features = ["full"] }

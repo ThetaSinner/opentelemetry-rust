@@ -1,9 +1,9 @@
 [package]
-name = "opentelemetry-otlp"
-version = "0.12.0"
-description = "Exporter for the OpenTelemetry Collector"
-homepage = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-otlp"
-repository = "https://github.com/open-telemetry/opentelemetry-rust/tree/main/opentelemetry-otlp"
+name = "ts_opentelemetry_otlp"
+version = "0.13.0-beta.1"
+description = "This is a fork of the exporter for the OpenTelemetry Collector"
+homepage = "https://github.com/ThetaSinner/opentelemetry-rust"
+repository = "https://github.com/ThetaSinner/opentelemetry-rust"
 readme = "README.md"
 categories = [
     "development-tools::debugging",

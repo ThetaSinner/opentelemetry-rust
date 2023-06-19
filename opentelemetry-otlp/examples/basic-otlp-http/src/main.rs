@@ -6,16 +6,16 @@ use ts_opentelemetry_api::{
     trace::{TraceContextExt, Tracer},
     Context, Key, KeyValue,
 };
-use opentelemetry_otlp::WithExportConfig;
+use ts_opentelemetry_otlp::WithExportConfig;
 use ts_opentelemetry_sdk::metrics as sdkmetrics;
 use ts_opentelemetry_sdk::trace as sdktrace;
 use std::error::Error;
 
 fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
-    opentelemetry_otlp::new_pipeline()
+    ts_opentelemetry_otlp::new_pipeline()
         .tracing()
         .with_exporter(
-            opentelemetry_otlp::new_exporter()
+            ts_opentelemetry_otlp::new_exporter()
                 .http()
                 .with_endpoint("http://localhost:4318/v1/traces"),
         )
@@ -23,14 +23,14 @@ fn init_tracer() -> Result<sdktrace::Tracer, TraceError> {
 }
 
 fn init_metrics() -> metrics::Result<sdkmetrics::MeterProvider> {
-    let export_config = opentelemetry_otlp::ExportConfig {
+    let export_config = ts_opentelemetry_otlp::ExportConfig {
         endpoint: "http://localhost:4318/v1/metrics".to_string(),
-        ..opentelemetry_otlp::ExportConfig::default()
+        ..ts_opentelemetry_otlp::ExportConfig::default()
     };
-    opentelemetry_otlp::new_pipeline()
+    ts_opentelemetry_otlp::new_pipeline()
         .metrics(ts_opentelemetry_sdk::runtime::Tokio)
         .with_exporter(
-            opentelemetry_otlp::new_exporter()
+            ts_opentelemetry_otlp::new_exporter()
                 .http()
                 .with_export_config(export_config),
         )
